@@ -1,0 +1,23 @@
+                           VR Juggler Release Notes
+                           ------------------------
+
+For all versions:
+
+    - See the ChangeLog for more system-level changes that do not directly
+      affect applications.
+    - See the Known Bugs page on the VR Juggler website (www.vrjuggler.org)
+      for the current list of bugs.
+
+===============================================================================
+
+ Version: 2.1.9
+Released: June 19, 2006
+
+    Required application and configuration changes for upgrading from
+    releases prior to 2.0.2 and 2.1.9:
+
+        * Subclasses of vrj::OsgApp that override latePreFrame() must call
+          up to vrj::OsgApp::latePreFrame() as the last step of the override
+          implementation.
+
+===============================================================================

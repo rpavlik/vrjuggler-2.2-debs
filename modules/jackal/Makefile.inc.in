@@ -1,0 +1,471 @@
+# ************** <auto-copyright.pl BEGIN do not edit this line> **************
+#
+# VR Juggler is (C) Copyright 1998-2007 by Iowa State University
+#
+# Original Authors:
+#   Allen Bierbaum, Christopher Just,
+#   Patrick Hartling, Kevin Meinert,
+#   Carolina Cruz-Neira, Albert Baker
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Library General Public
+# License as published by the Free Software Foundation; either
+# version 2 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Library General Public License for more details.
+#
+# You should have received a copy of the GNU Library General Public
+# License along with this library; if not, write to the
+# Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+# Boston, MA 02111-1307, USA.
+#
+# *************** <auto-copyright.pl END do not edit this line> ***************
+
+# -----------------------------------------------------------------------------
+# Specialized include file for the top-level makefile.  Targets and variables
+# needed for building the whole source tree are provided here.  This file
+# should only be included by the top-level makefile.  It is written in such a
+# way that no assumptions are made by this file about what the including file
+# provides except that it includes make.defs.mk.
+#
+# Generated for use on @PLATFORM@
+# -----------------------------------------------------------------------------
+
+# Variables whose values are specific to this file.
+data_subdir=	@data_subdir@
+includedir=	@includedir@
+instlinks=	$(topdir)/instlinks
+srcdir=		@srcdir@
+top_srcdir=	@top_srcdir@
+
+# Extra compiler and linker options needed only by this file.
+DBG_FLAGS=	-D_DEBUG @DBG_FLAGS@
+OPT_FLAGS=	-D_OPT -DNDEBUG @OPT_FLAGS@
+
+HAVE_TWEEK_CXX=	@HAVE_TWEEK_CXX@
+
+BUILD_JAVA=	@BUILD_JAVA@
+JDOM_JAR=	@JDOM_JAR@
+
+# =============================================================================
+# Build and installation directory naming and ownership information.
+# =============================================================================
+DEFAULT_DIR=	$(OPT_DIR)
+
+# If we have a name for the install group, define group-setting options for
+# UNIX commands (chown(1), chgrp(1)) and for local Perl scripts
+# (makefiles-gen.pl in particular).
+ifdef GROUP_NAME
+    _GROUP_OPT_PL=	--gname="$(GROUP_NAME)"
+endif
+
+# --------------------------------------------
+# Library build information.
+# --------------------------------------------
+LIBRARY_VERSION=	@LIBRARY_VERSION@
+
+# We will name the static libraries differently than the dynamic libraries.
+ifeq (@OS_TYPE@, Win32)
+STATIC_SUFFIX=	_s
+endif
+
+ifeq (@HAVE_LD_SONAME@, Y)
+CC_SONAME_FLAG=	@CC_SONAME_FLAG@
+LDOPTS+=	$(CC_SONAME_FLAG)$(notdir $@)
+endif
+
+# Add extra linking options on Darwin/OS X.
+ifeq (@PLATFORM@, Darwin)
+LDOPTS+=	-Wl,-dylib_compatibility_version,$(MAJOR_VERSION).$(MINOR_VERSION)
+LDOPTS+=	-Wl,-dylib_current_version,$(MAJOR_VERSION).$(MINOR_VERSION).$(MICRO_VERSION)
+LDOPTS_DBG=	-g
+LDOPTS_OPT=	-Wl,-x
+endif
+
+DYLIB_DEPS=	@DYLIB_DEPS@
+STATICLIB_EXT=	@STATICLIB_EXT@
+DYNAMICLIB_EXT=	@DYNAMICLIB_EXT@
+
+# Dependencies for each of the various dynamic libraries we build.
+DYLIB_DEPS_JCCL=		@DYLIB_DEPS_JCCL@
+DYLIB_DEP_FILES_JCCL=		@DYLIB_DEP_FILES_JCCL@
+DYLIB_PROF_DEPS_JCCL=		@DYLIB_PROF_DEPS_JCCL@
+DYLIB_PROF_DEP_FILES_JCCL=	@DYLIB_PROF_DEP_FILES_JCCL@
+
+# These functions build up the name of the library using a comon form.
+# Unfortunately, spaces have significance in GNU Make function calls, so there
+# cannot be spaces after any commas.
+make_libname=		$(1)$(2)$(LIBRARY_VERSION).$(3)
+make_static=		$(call make_libname,$(1),$(STATIC_SUFFIX),$(STATICLIB_EXT))
+make_dynamic=		$(call make_libname,$(1),,$(DYNAMICLIB_EXT))
+make_static_prof=	$(call make_libname,$(1),$(PROFLIB_EXT)$(STATIC_SUFFIX),$(STATICLIB_EXT))
+make_dynamic_prof=	$(call make_libname,$(1),$(PROFLIB_EXT),$(DYNAMICLIB_EXT))
+
+# Full list of the libraries to build. These are for Doozer++.
+ifeq ($(BUILD_CXX), Y)
+LIBS=			$(JCCL_LIBRARY)
+STATIC_LIBS=		$(call make_static,$${LIB})
+DYNAMIC_LIBS=		$(call make_dynamic,$${LIB})
+PROF_STATIC_LIBS=	$(call make_static_prof,$${LIB})
+PROF_DYNAMIC_LIBS=	$(call make_dynamic_prof,$${LIB})
+endif
+
+# The proper library names. These are used below in the targets that actually
+# build the libraries.
+JCCL_LIB_STATIC=	$(call make_static,$(JCCL_LIBRARY))
+JCCL_LIB_DYNAMIC=	$(call make_dynamic,$(JCCL_LIBRARY))
+JCCL_PROF_LIB_STATIC=	$(call make_static_prof,$(JCCL_LIBRARY))
+JCCL_PROF_LIB_DYNAMIC=	$(call make_dynamic_prof,$(JCCL_LIBRARY))
+
+
+
+# Version information.
+PARAM_HEADER=	common/jccl/jcclParam.h
+BRANCH=		trunk
+CANON_NAME=	Melkor
+VER_ARGS=	-f $(JCCLROOT_ABS)/VERSION -s @VPR_SUBSYSTEM@		\
+		-b $(BRANCH) -n "$(CANON_NAME)"				\
+		-d "`date '+%b %e, %Y %H:%M:%S'`"
+
+ifdef VERSION
+   VER_ARGS+=	-v $(VERSION)
+endif
+
+# =============================================================================
+# Library targets.
+# =============================================================================
+OBJS=		$(OBJDIR)/../*/*.$(OBJEXT)
+BEFOREBUILD=	beforebuild
+AFTERBUILD=	afterbuild
+
+# Things to do before the object files and library are built.
+beforebuild: $(PARAM_HEADER)
+
+$(PARAM_HEADER): $(JCCLROOT_ABS)/$(PARAM_HEADER).in $(JCCLROOT_ABS)/VERSION
+	@$(MAKE) clean-version-links
+	@$(SHELL) $(scriptdir)/make-ver.sh -o $@		\
+          -i $(JCCLROOT_ABS)/$@.in $(VER_ARGS)
+
+# Things to do after the object files and library are built.
+afterbuild:
+	@$(MAKE) links
+	@echo ""
+	@echo "---------------------------------------------------------------"
+	@echo 'You should now set $$JCCL_BASE_DIR to:'
+	@cd $(instlinks) && echo "  `pwd`"
+	@echo "---------------------------------------------------------------"
+
+# -----------------------------------------------
+# Construct the static version of the libraries.
+# -----------------------------------------------
+$(LIBDIR)/$(JCCL_LIB_STATIC) $(LIBDIR)/$(JCCL_PROF_LIB_STATIC): $(OBJS)
+	@echo BUILDDIR_BASE=$(BUILDDIR_BASE)
+	@echo BUILDDIR=$(BUILDDIR)
+	@echo BASE_OBJDIR=$(BASE_OBJDIR)
+	@echo OBJDIR=$(OBJDIR)
+	@echo "------------------------------------------------"
+	@echo "Creating $@"
+	@echo "------------------------------------------------"
+	@$(SHELL) $(MKINSTALLDIRS) $(LIBDIR)
+	$(AR) $(AR_NAME_FLAG)$@ $(OBJS)
+	$(RANLIB) $@
+	cd $(LIBDIR_BASE) && $(RM_LN) $(notdir $@) && $(LN_S) $@ ./
+	@echo "------------------------------------------------"
+	@echo "$@ done"
+	@echo "------------------------------------------------"
+
+# ------------------------------------------------
+# Construct the dynamic version of the libraries.
+# ------------------------------------------------
+$(LIBDIR)/$(JCCL_LIB_DYNAMIC): $(OBJS) $(DYLIB_DEP_FILES_JCCL)
+	@echo "------------------------------------------------"
+	@echo "Creating $@"
+	@echo "------------------------------------------------"
+	@$(SHELL) $(MKINSTALLDIRS) $(LIBDIR)
+ifeq (@PLATFORM@, Darwin)
+ifeq ($(ISA), universal)
+	for a in $(UNIVERSAL_ARCH_LIST) ; do				\
+            ld -arch $$a -dynamic -m -r -d -bind_at_load -o		\
+              $(subst .dylib,-$$a.lo,$@) $(OBJS) ;			\
+         done
+	lipo -create $(foreach arch,$(UNIVERSAL_ARCH_LIST),$(subst .dylib,-$(arch).lo,$@)) -output $(subst .dylib,.lo,$@)
+else
+	ld -dynamic -m -r -d -bind_at_load -o $(subst .dylib,.lo,$@) $(OBJS)
+endif
+	$(CXX) $(EXTRA_LDOPTS) -Wl,-dynamic -nostartfiles -Wl,-dylib	\
+          -Wl,-ldylib1.o $(LDOPTS) -o $@ $(subst .dylib,.lo,$@)		\
+          $(DYLIB_DEPS_JCCL)
+	rm -f $(@D)/*.lo
+else
+	$(CXX_DLL) $(LDOPTS) $(DYLIB_NAME_FLAG) $(OBJS) $(DYLIB_DEPS_JCCL)
+endif
+ifeq (@OS_TYPE@, Win32)
+	cd $(LIBDIR_BASE) && cp $(LIBDIR)/* .
+else
+	cd $(LIBDIR_BASE) && $(RM_LN) $(notdir $@) && $(LN_S) $@ ./
+endif
+	@echo "------------------------------------------------"
+	@echo "$@ done"
+	@echo "------------------------------------------------"
+
+#ifeq (@OS_TYPE@, Win32)
+#	cd $(LIBDIR_BASE) && $(RM_LN) $(JCCL_LIB_STATIC) &&		\
+#            $(LN_S) $(LIBDIR)/$(JCCL_LIB_STATIC) ./
+#	cd $(LIBDIR_BASE) && $(RM_LN) $(JCCL_LIBRARY).exp &&			\
+#            $(LN_S) $(LIBDIR)/$(JCCL_LIBRARY).exp ./
+#endif
+
+# ---------------------------------------------------------
+# Construct the profiled dynamic version of the libraries.
+# ---------------------------------------------------------
+$(LIBDIR)/$(JCCL_PROF_LIB_DYNAMIC): $(OBJS) $(DYLIB_PROF_DEP_FILES_JCCL)
+	@echo "------------------------------------------------"
+	@echo "Creating $@"
+	@echo "------------------------------------------------"
+	@$(SHELL) $(MKINSTALLDIRS) $(LIBDIR)
+ifeq (@PLATFORM@, Darwin)
+ifeq ($(ISA), universal)
+	for a in $(UNIVERSAL_ARCH_LIST) ; do				\
+            ld -arch $$a -dynamic -m -r -d -bind_at_load -o		\
+              $(subst .dylib,-$$a.lo,$@) $(OBJS) ;			\
+         done
+	lipo -create $(foreach arch,$(UNIVERSAL_ARCH_LIST),$(subst .dylib,-$(arch).lo,$@)) -output $(subst .dylib,.lo,$@)
+else
+	ld -dynamic -m -r -d -bind_at_load -o $(subst .dylib,.lo,$@) $(OBJS)
+endif
+	$(CXX) $(EXTRA_LDOPTS) -Wl,-dynamic -nostartfiles -Wl,-dylib	\
+          -Wl,-ldylib1.o $(LDOPTS) -o $@ $(subst .dylib,.lo,$@)		\
+          $(DYLIB_PROF_DEPS_JCCL)
+	rm -f $(@D)/*.lo
+else
+	$(CXX_DLL) $(LDOPTS) $(DYLIB_NAME_FLAG) $(OBJS) $(DYLIB_PROF_DEPS_JCCL)
+endif
+ifeq (@OS_TYPE@, Win32)
+	cd $(LIBDIR_BASE) && cp $(LIBDIR)/* .
+else
+	cd $(LIBDIR_BASE) && $(RM_LN) $(notdir $@) && $(LN_S) $@ ./
+endif
+	@echo "------------------------------------------------"
+	@echo "$@ done"
+	@echo "------------------------------------------------"
+
+# =============================================================================
+# Make links for developer use that provide the needed functionality for
+# the $JCCL_BASE_DIR environment variable to be used when needed.  $JCCL_BASE_DIR
+# should be set to $(instlinks).
+# =============================================================================
+links:
+	@echo "------------------------------------------------"
+	@echo "Setting up developer installation"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(instlinks)/share/flagpoll
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(EXTRA_INSTALL_ARGS) $(topdir)/jccl.fpc			\
+          $(instlinks)/share/flagpoll/jccl.fpc
+ifdef BUILD_TYPE
+	$(MAKE) links-$(BUILD_TYPE)
+else
+	$(MAKE) links-dbg
+endif
+
+clean-version-links:
+	@rm -rf $(instlinks)/include/jccl* $(instlinks)/lib*/jccl*	\
+           $(instlinks)/$(data_subdir)/jccl*
+	@rm -f $(instlinks)/lib$(LIBBITSUF)/flagpoll/jccl*
+	@for l in $(LIBS) ; do						\
+            find $(instlinks) -name "$$l*" -exec rm {} ';' ;		\
+         done
+
+links-all:
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" installworld
+
+links-dbg:
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" install-debug
+
+links-opt:
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" install-optim
+
+links-prof:
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" install-profiled
+
+links-prof-libs:
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" install-prof
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" install-prof-dso
+
+# Remove the links in $(instlinks).  We cannot do this in the global build,
+# however, because it would blow away links set up by our dependencies.
+clean-links:
+ifndef GLOBAL_BUILD
+	@echo "------------------------------------------------"
+	@echo "Removing developer installation links"
+	@echo "------------------------------------------------"
+	rm -rf $(instlinks)
+endif
+
+# =============================================================================
+# Installation targets.  The default (what is done by 'install') is to install
+# the static debugging version of the libraries.  The steps taken for a full
+# installation are:
+#
+#     1) Create the full installation directory hierarchy.
+#     2) Install the libraries.
+#     3) Install the header files.
+#     4) Install the test programs.
+#     5) Install the contents of the data directory.
+#     6) Install the Java-based config editor (if possible).
+# =============================================================================
+
+BEFOREINSTALL=	beforeinstall
+AFTERINSTALL=	afterinstall
+
+# Steps to take before beginning the installation process.  This target is
+# independent of the current ABI.
+beforeinstall:
+	@$(MAKE) hier
+
+# Make the full directory hierarchy for the installation.
+hier:
+	@echo "------------------------------------------------"
+	@echo "Making hierarchy"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(prefix)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.install.dist -p $(prefix)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.include.dist -p $(prefix)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.lib.dist -p $(prefix)
+	$(SHELL) $(MKINSTALLDIRS) $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.data.dist -p $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.java.dist -p $(projdatadir)
+#	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.samples.dist -p $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.test.dist -p $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.tools.dist -p $(projdatadir)
+
+# Steps to take after the installation process is complete.  This target is
+# independent of the current ABI.
+afterinstall:
+	@echo "==============================================================="
+	@echo "Jackal installation complete"
+	@echo "==============================================================="
+
+PREINSTALL=	pre-install
+POSTINSTALL=	post-install
+
+pre-install:
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.lib.dist -p $(prefix)
+
+# Do everything needed after installing the library binaries.
+post-install:
+	@$(MAKE) install-java
+#	@$(MAKE) install-samples
+#	@$(MAKE) install-test
+	@$(MAKE) install-tools
+	@$(MAKE) install-data
+	@$(MAKE) install-m4
+	@$(MAKE) install-flagpoll
+
+PREINSTALL_HEADERS=	pre-install-headers
+
+pre-install-headers:
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.include.dist -p $(prefix)
+
+install-java:
+	for dir in $(SUBDIR) ; do					\
+            $(MAKE) -C $$dir java-install ;				\
+          done
+
+# Install the sample applications.
+install-samples:
+	@echo "------------------------------------------------"
+	@echo "Installing sample applications"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.samples.dist -p $(projdatadir)
+	$(PERL) $(scriptdir)/install-src.pl -i $(top_srcdir)/samples	\
+          -m $(FILE_PERMS) $(GROUP_OPT_UNIX) -o $(projdatadir)/samples
+	$(PERL) $(scriptdir)/makefiles-gen.pl				\
+          --vars="$(topdir)/VARS.pl" --startdir="$(top_srcdir)/samples"	\
+          --mode="$(FILE_PERMS)" $(_GROUP_OPT_PL) --srcdir="."		\
+          --prefix="$(projdatadir)/samples"
+
+# Install the test programs.
+install-test:
+	@echo "------------------------------------------------"
+	@echo "Installing test programs"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/JCCL.test.dist -p $(projdatadir)
+	$(PERL) $(scriptdir)/install-src.pl -i $(top_srcdir)/test	\
+          -m $(FILE_PERMS) $(GROUP_OPT_UNIX) -o $(projdatadir)/test
+	$(PERL) $(scriptdir)/makefiles-gen.pl --mode="$(FILE_PERMS)"	\
+          --prefix="$(projdatadir)/test" --vars="$(topdir)/VARS.pl"	\
+          --startdir="$(top_srcdir)/test" $(_GROUP_OPT_PL) --srcdir="."
+
+install-m4:
+	@echo "------------------------------------------------"
+	@echo "Installing Autoconf m4 macros"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(datadir)/aclocal
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(EXTRA_INSTALL_ARGS) $(JUGGLERROOT_ABS)/macros/jccl.m4	\
+          $(datadir)/aclocal
+
+install-flagpoll:
+	@echo "------------------------------------------------"
+	@echo "Installing Flagpoll metadata file"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(libdir)$(LIBBITSUF)/flagpoll
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(topdir)/jccl.fpc 						\
+          $(libdir)$(LIBBITSUF)/flagpoll/jccl-$(VERSION_DOT).$(PLATFORM).$(ISA).fpc
+
+# Install the user tools code.
+install-tools:
+	@echo "------------------------------------------------"
+	@echo "Installing user tools"
+	@echo "------------------------------------------------"
+	$(PERL) $(scriptdir)/install-dir.pl -m $(FILE_PERMS)		\
+          $(GROUP_OPT_UNIX) -i $(top_srcdir)/tools/xmlupdate		\
+          -o $(projdatadir)/tools/xmlupdate -v "$(topdir)/VARS.pl"
+
+# Install the standard data files.
+install-data:
+	$(MAKE) -C data install
+
+# =============================================================================
+# Clean-up targets.  '_clean' removes all the files in the build directories.  
+# '_clobber' removes the $(BUILDDIR_BASE) and $(LIBDIR_NAME) directories.
+# =============================================================================
+CLOBBER_DIRS+=	$(BUILDDIR_BASE) $(LIBDIR_NAME)
+
+_clobber:
+	@$(MAKE) cleandepend
+	@$(MAKE) clean-links
+
+# Define $(_LOCAL_CLEAN) and $(_LOCAL_CLOBBER) to inform the shared 'clean'
+# and 'clobber' targets that there is a '_clean' target and a '_clobber'
+# target to be run besides the standard targets.
+_LOCAL_CLOBBER=	1
+
+EXTRA_OBJ_TARGETS=	build-java
+
+# Make sure we build java targets serially because javac is stupid and may try
+# to write to the same files at the same time while building different sources.
+build-java:
+ifdef NO_JAVA
+	@echo "------------------------------------------------"
+	@echo "Skipping Java GUI targets."
+	@echo "------------------------------------------------"
+else
+ifeq ($(BUILD_JAVA), Y)
+	$(MAKE) -j 1 RECTARGET=java recursive
+endif
+endif #ifdef NO_JAVA
+
+include $(MKPATH)/dpp.libs.mk
+include $(MKPATH)/dpp.clean.mk
+
+CLEAN_FILES+=	$(PARAM_HEADER)
+CLEAN_DIRS+=	$(BUILDDIR_BASE) $(LIBDIR_NAME)
+CLOBBER_DIRS+=	$(BUILDDIR_BASE) $(LIBDIR_NAME)

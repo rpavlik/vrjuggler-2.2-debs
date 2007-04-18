@@ -1,0 +1,458 @@
+# ************** <auto-copyright.pl BEGIN do not edit this line> **************
+#
+# VR Juggler is (C) Copyright 1998-2007 by Iowa State University
+#
+# Original Authors:
+#   Allen Bierbaum, Christopher Just,
+#   Patrick Hartling, Kevin Meinert,
+#   Carolina Cruz-Neira, Albert Baker
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Library General Public
+# License as published by the Free Software Foundation; either
+# version 2 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Library General Public License for more details.
+#
+# You should have received a copy of the GNU Library General Public
+# License along with this library; if not, write to the
+# Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+# Boston, MA 02111-1307, USA.
+#
+# *************** <auto-copyright.pl END do not edit this line> ***************
+
+# -----------------------------------------------------------------------------
+# Specialized include file for the top-level makefile.  Targets and variables
+# needed for building the whole source tree are provided here.  This file
+# should only be included by the top-level makefile.  It is written in such a
+# way that no assumptions are made by this file about what the including file
+# provides except that it includes make.defs.mk.
+#
+# Generated for use on @PLATFORM@
+# -----------------------------------------------------------------------------
+
+# Variables whose values are specific to this file.
+data_subdir=	@data_subdir@
+includedir=	@includedir@
+instlinks=	$(topdir)/instlinks
+srcdir=		@srcdir@
+top_srcdir=	@top_srcdir@
+
+# Extra compiler and linker options needed only by this file.
+DBG_FLAGS=	-D_DEBUG @DBG_FLAGS@
+OPT_FLAGS=	-D_OPT -DNDEBUG @OPT_FLAGS@
+
+# =============================================================================
+# Build and installation directory naming and ownership information.
+# =============================================================================
+DEFAULT_DIR=	$(OPT_DIR)
+
+# If we have a name for the install group, define group-setting options for
+# UNIX commands (chown(1), chgrp(1)) and for local Perl scripts
+# (makefiles-gen.pl in particular).
+ifdef GROUP_NAME
+   _GROUP_OPT_PL=	--gname="$(GROUP_NAME)"
+endif
+
+# --------------------------------------------
+# Library build information.
+# --------------------------------------------
+
+LIBRARY_VERSION=	@LIBRARY_VERSION@
+
+# We do not do version numbering for dynamic libraries on Win32.
+ifeq (@OS_TYPE@, Win32)
+STATIC_SUFFIX=	_s
+endif
+
+ifeq (@HAVE_LD_SONAME@, Y)
+CC_SONAME_FLAG=	@CC_SONAME_FLAG@
+LDOPTS+=	$(CC_SONAME_FLAG)$(notdir $@)
+endif
+
+# Add extra linking options on Darwin/OS X.
+ifeq (@PLATFORM@, Darwin)
+LDOPTS+=	-Wl,-dylib_compatibility_version,$(MAJOR_VERSION).$(MINOR_VERSION)
+LDOPTS+=	-Wl,-dylib_current_version,$(MAJOR_VERSION).$(MINOR_VERSION).$(MICRO_VERSION)
+LDOPTS_DBG=	-g
+LDOPTS_OPT=	-Wl,-x
+endif
+
+# Full list of the libraries to build.
+LIBS=			$(GADGET_LIBRARY)
+STATIC_LIBS=		$$LIB.$(STATICLIB_EXT)
+DYNAMIC_LIBS=		$$LIB.$(DYNAMICLIB_EXT)$(DYNAMICLIB_VER)
+PROF_STATIC_LIBS=	$${LIB}$(PROFLIB_EXT).$(STATICLIB_EXT)
+PROF_DYNAMIC_LIBS=	$${LIB}$(PROFLIB_EXT).$(DYNAMICLIB_EXT)$(DYNAMICLIB_VER)
+
+# Dependencies for each of the various dynamic libraries we build.
+DYLIB_DEPS=		@DYLIB_DEPS@
+DYLIB_DEP_FILES=	@DYLIB_DEP_FILES@
+DYLIB_PROF_DEPS=	@DYLIB_PROF_DEPS@
+DYLIB_PROF_DEP_FILES=	@DYLIB_PROF_DEP_FILES@
+
+# These functions build up the name of the library using a comon form.
+# Unfortunately, spaces have significance in GNU Make function calls, so there
+# cannot be spaces after any commas.
+make_libname=			$(1)$(2)$(LIBRARY_VERSION).$(3)
+make_static=			$(call make_libname,$(1),$(STATIC_SUFFIX),$(STATICLIB_EXT))
+make_dynamic=			$(call make_libname,$(1),,$(DYNAMICLIB_EXT))
+make_static_prof=		$(call make_libname,$(1),$(PROFLIB_EXT)$(STATIC_SUFFIX),$(STATICLIB_EXT))
+make_dynamic_prof=		$(call make_libname,$(1),$(PROFLIB_EXT),$(DYNAMICLIB_EXT))
+
+# Full list of the libraries to build. These are for Doozer++.
+LIBS=				$(GADGET_LIBRARY)
+STATIC_LIBS=			$(call make_static,$${LIB})
+DYNAMIC_LIBS=			$(call make_dynamic,$${LIB})
+PROF_STATIC_LIBS=		$(call make_static_prof,$${LIB})
+PROF_DYNAMIC_LIBS=		$(call make_dynamic_prof,$${LIB})
+
+# The proper library names. These are used below in the targets that actually
+# build the libraries.
+GADGET_LIB_STATIC=		$(call make_static,$(GADGET_LIBRARY))
+GADGET_LIB_DYNAMIC=		$(call make_dynamic,$(GADGET_LIBRARY))
+GADGET_PROF_LIB_STATIC=		$(call make_static_prof,$(GADGET_LIBRARY))
+GADGET_PROF_LIB_DYNAMIC=	$(call make_dynamic_prof,$(GADGET_LIBRARY))
+
+# Version information.
+PARAM_HEADER=	gadget/gadgetParam.h
+BRANCH=		trunk
+CANON_NAME=	Varda
+VER_ARGS=	-f $(GADGETROOT_ABS)/VERSION -s @VPR_SUBSYSTEM@		\
+		-b $(BRANCH) -n "$(CANON_NAME)"				\
+		-d "`date '+%b %e, %Y %H:%M:%S'`"
+
+ifdef VERSION
+   VER_ARGS+=	-v $(VERSION)
+endif
+
+# =============================================================================
+# Library targets.
+# =============================================================================
+OBJS=		$(OBJDIR)/*.$(OBJEXT)
+BEFOREBUILD=	beforebuild
+AFTERBUILD=	afterbuild
+
+# Things to do before the object files and library are built.
+beforebuild: $(PARAM_HEADER)
+
+$(PARAM_HEADER): $(GADGETROOT_ABS)/$(PARAM_HEADER).in $(GADGETROOT_ABS)/VERSION
+	@$(MAKE) clean-version-links
+	@$(SHELL) $(scriptdir)/make-ver.sh -o $@		\
+          -i $(GADGETROOT_ABS)/$@.in $(VER_ARGS)
+
+# Things to do after the object files and library are built.
+afterbuild:
+	@$(MAKE) links
+	@echo ""
+	@echo "---------------------------------------------------------------"
+	@echo 'You should now set $$GADGET_BASE_DIR to:'
+	@cd $(instlinks) && echo "  `pwd`"
+	@echo "---------------------------------------------------------------"
+
+# -----------------------------------------------
+# Construct the static version of the libraries.
+# -----------------------------------------------
+$(LIBDIR)/$(GADGET_LIB_STATIC) $(LIBDIR)/$(GADGET_PROF_LIB_STATIC): $(OBJS)
+	@echo "------------------------------------------------"
+	@echo "Creating $@"
+	@echo "------------------------------------------------"
+	@$(SHELL) $(MKINSTALLDIRS) $(LIBDIR)
+	$(AR) $(AR_NAME_FLAG)$@ $(OBJS)
+	$(RANLIB) $@
+	cd $(LIBDIR_BASE) && $(RM_LN) $(notdir $@) && $(LN_S) $@ ./
+	@echo "------------------------------------------------"
+	@echo "$@ done"
+	@echo "------------------------------------------------"
+
+# ------------------------------------------------
+# Construct the dynamic version of the libraries.
+# ------------------------------------------------
+$(LIBDIR)/$(GADGET_LIB_DYNAMIC): $(OBJS) $(DYLIB_DEP_FILES)
+	@echo "------------------------------------------------"
+	@echo "Creating $@"
+	@echo "------------------------------------------------"
+	@$(SHELL) $(MKINSTALLDIRS) $(LIBDIR)
+ifeq (@PLATFORM@, Darwin)
+ifeq ($(ISA), universal)
+	for a in $(UNIVERSAL_ARCH_LIST) ; do				\
+            ld -arch $$a -dynamic -m -r -d -bind_at_load -o		\
+              $(subst .dylib,-$$a.lo,$@) $(OBJS) ;			\
+         done
+	lipo -create $(foreach arch,$(UNIVERSAL_ARCH_LIST),$(subst .dylib,-$(arch).lo,$@)) -output $(subst .dylib,.lo,$@)
+else
+	ld -dynamic -m -r -d -bind_at_load -o $(subst .dylib,.lo,$@) $(OBJS)
+endif
+	$(CXX) $(EXTRA_LDOPTS) -Wl,-dynamic -nostartfiles -Wl,-dylib	\
+          -Wl,-ldylib1.o $(LDOPTS) -o $@ $(subst .dylib,.lo,$@) $(DYLIB_DEPS)
+	rm -f $(@D)/*.lo
+else
+	$(CXX_DLL) $(LDOPTS) $(DYLIB_NAME_FLAG) $(OBJS)	\
+          $(DYLIB_DEPS)
+endif
+ifeq (@OS_TYPE@, Win32)
+	cd $(LIBDIR_BASE) && cp $(LIBDIR)/* .
+else
+	cd $(LIBDIR_BASE) && $(RM_LN) $(notdir $@) && $(LN_S) $@ ./
+endif
+	@echo "------------------------------------------------"
+	@echo "$@ done"
+	@echo "------------------------------------------------"
+
+# ---------------------------------------------------------
+# Construct the profiled dynamic version of the libraries.
+# ---------------------------------------------------------
+$(LIBDIR)/$(GADGET_PROF_LIB_DYNAMIC): $(OBJS) $(DYLIB_PROF_DEP_FILES)
+	@echo "------------------------------------------------"
+	@echo "Creating $@"
+	@echo "------------------------------------------------"
+	@$(SHELL) $(MKINSTALLDIRS) $(LIBDIR)
+ifeq (@PLATFORM@, Darwin)
+ifeq ($(ISA), universal)
+	for a in $(UNIVERSAL_ARCH_LIST) ; do				\
+            ld -arch $$a -dynamic -m -r -d -bind_at_load -o		\
+              $(subst .dylib,-$$a.lo,$@) $(OBJS) ;			\
+         done
+	lipo -create $(foreach arch,$(UNIVERSAL_ARCH_LIST),$(subst .dylib,-$(arch).lo,$@)) -output $(subst .dylib,.lo,$@)
+else
+	ld -dynamic -m -r -d -bind_at_load -o $(subst .dylib,.lo,$@) $(OBJS)
+endif
+	$(CXX) $(EXTRA_LDOPTS) -Wl,-dynamic -nostartfiles -Wl,-dylib	\
+          -Wl,-ldylib1.o $(LDOPTS) -o $@ $(subst .dylib,.lo,$@)		\
+          $(DYLIB_PROF_DEPS)
+	rm -f $(@D)/*.lo
+else
+	$(CXX_DLL) $(LDOPTS) $(DYLIB_NAME_FLAG) $(OBJS)	\
+          $(DYLIB_PROF_DEPS)
+endif
+ifeq (@OS_TYPE@, Win32)
+	cd $(LIBDIR_BASE) && cp $(LIBDIR)/* .
+else
+	cd $(LIBDIR_BASE) && $(RM_LN) $(notdir $@) && $(LN_S) $@ ./
+endif
+	@echo "------------------------------------------------"
+	@echo "$@ done"
+	@echo "------------------------------------------------"
+
+# =============================================================================
+# Make links for developer use that provide the needed functionality for
+# the $GADGET_BASE_DIR environment variable to be used when needed.
+# $GADGET_BASE_DIR should be set to $(instlinks).
+# =============================================================================
+links:
+	@echo "------------------------------------------------"
+	@echo "Setting up developer installation"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(instlinks)/share/flagpoll
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(EXTRA_INSTALL_ARGS) $(topdir)/gadgeteer.fpc			\
+          $(instlinks)/share/flagpoll/gadgeteer.fpc
+ifdef BUILD_TYPE
+	$(MAKE) links-$(BUILD_TYPE)
+else
+	$(MAKE) links-dbg
+endif
+
+clean-version-links:
+	@rm -rf $(instlinks)/include/gadgeteer*				\
+           $(instlinks)/lib*/gadgeteer*					\
+           $(instlinks)/$(data_subdir)/gadgeteer*
+	@rm -f $(instlinks)/lib$(LIBBITSUF)/flagpoll/gadgeteer*
+	@for l in $(LIBS) ; do						\
+            find $(instlinks) -name "$$l*" -exec rm {} ';' ;		\
+         done
+
+links-all:
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" installworld
+
+links-dbg:
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" install-debug
+
+links-opt:
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" install-optim
+
+links-prof:
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" install-profiled
+
+links-prof-libs:
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" install-prof
+	@$(MAKE) EXTRA_INSTALL_ARGS=-l prefix="$(instlinks)" install-prof-dso
+
+# Remove the links in $(instlinks).
+clean-links:
+ifndef GLOBAL_BUILD
+	@echo "------------------------------------------------"
+	@echo "Removing developer installation links"
+	@echo "------------------------------------------------"
+	rm -rf $(instlinks)
+endif
+
+# =============================================================================
+# Installation targets.  The default (what is done by 'install') is to install
+# the static debugging version of the libraries.  The steps taken for a full
+# installation are:
+#
+#     1) Create the full installation directory hierarchy.
+#     2) Install the libraries.
+#     3) Install the header files.
+#     4) Install the test programs.
+#     5) Install the contents of the Data directory.
+#     6) Install the Java-based config editor (if possible).
+# =============================================================================
+
+BEFOREINSTALL=	beforeinstall
+AFTERINSTALL=	afterinstall
+
+# Steps to take before beginning the installation process.  This target is
+# independent of the current ABI.
+beforeinstall:
+	@$(MAKE) hier
+
+# Make the full directory hierarchy for the installation.
+hier:
+	@echo "------------------------------------------------"
+	@echo "Making hierarchy"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(prefix)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.install.dist -p $(prefix)
+	$(SHELL) $(MKINSTALLDIRS) $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.data.dist -p $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.include.dist -p $(prefix)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.lib.dist -p $(prefix)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.test.dist -p $(projdatadir)
+
+# Steps to take after the installation process is complete.  This target is
+# independent of the current ABI.
+afterinstall:
+
+PREINSTALL=	pre-install
+POSTINSTALL=	post-install
+
+pre-install:
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.lib.dist -p $(prefix)
+
+# Do everything needed after installing the library binaries.
+post-install:
+	@$(MAKE) install-samples
+	@$(MAKE) install-test
+	@$(MAKE) install-tools
+	@$(MAKE) install-data
+	@$(MAKE) install-m4
+	@$(MAKE) install-flagpoll
+
+PREINSTALL_HEADERS=	pre-install-headers
+POSTINSTALL_HEADERS=	post-install-headers
+
+pre-install-headers:
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.include.dist -p $(prefix)
+
+post-install-headers:
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(EXTRA_INSTALL_ARGS)						\
+          $(GADGETROOT_ABS)/gadget/Devices/DriverConfig.h		\
+          $(includedir)/gadget/Devices/DriverConfig.h
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(EXTRA_INSTALL_ARGS)						\
+          $(GADGETROOT_ABS)/cluster/PluginConfig.h			\
+          $(includedir)/cluster/PluginConfig.h
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(EXTRA_INSTALL_ARGS) $(GADGETROOT_ABS)/gadget/gadgetConfig.h	\
+          $(includedir)/gadget/gadgetConfig.h
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(EXTRA_INSTALL_ARGS) $(topdir)/gadget/gadgetDefines.h	\
+          $(includedir)/gadget
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(EXTRA_INSTALL_ARGS) $(topdir)/gadget/gadgetParam.h		\
+          $(includedir)/gadget
+
+# Install the sample code.
+install-samples:
+	@echo "------------------------------------------------"
+	@echo "Installing sample code"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.samples.dist -p $(projdatadir)
+	$(PERL) $(scriptdir)/install-src.pl -i $(top_srcdir)/samples	\
+          -m $(FILE_PERMS) $(GROUP_OPT_UNIX) -o $(projdatadir)/samples
+	$(PERL) $(scriptdir)/makefiles-gen.pl --mode="$(FILE_PERMS)"	\
+          --prefix="$(projdatadir)/samples" --vars="$(topdir)/VARS.pl"	\
+          --startdir="$(top_srcdir)/samples" $(_GROUP_OPT_PL) --srcdir="."
+
+# Install the test programs.
+install-test:
+	@echo "------------------------------------------------"
+	@echo "Installing test programs"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.test.dist -p $(projdatadir)
+	$(PERL) $(scriptdir)/install-src.pl -i $(top_srcdir)/test	\
+          -m $(FILE_PERMS) $(GROUP_OPT_UNIX) -o $(projdatadir)/test
+	$(PERL) $(scriptdir)/makefiles-gen.pl --mode="$(FILE_PERMS)"	\
+          --prefix="$(projdatadir)/test" --vars="$(topdir)/VARS.pl"	\
+          --startdir="$(top_srcdir)/test" $(_GROUP_OPT_PL) --srcdir="."
+
+# Install the standard data files.
+install-data:
+	@echo "------------------------------------------------"
+	@echo "Installing standard data files"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.data.dist -p $(projdatadir)
+	$(PERL) $(scriptdir)/install-dir.pl -i $(top_srcdir)/data	\
+          -m $(FILE_PERMS) $(GROUP_OPT_UNIX) -o $(projdatadir)/data	\
+          -v "$(topdir)/VARS.pl"
+
+install-tools:
+	@echo "------------------------------------------------"
+	@echo "Installing tools"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(projdatadir)
+	$(MTREE_CMD) -Ude -f $(mtreedir)/GADGET.tools.dist -p $(projdatadir)
+	$(PERL) $(scriptdir)/install-dir.pl -i $(top_srcdir)/tools	\
+          -m $(FILE_PERMS) $(GROUP_OPT_UNIX) -o $(projdatadir)/tools	\
+          -v "$(topdir)/VARS.pl"
+
+install-m4:
+	@echo "------------------------------------------------"
+	@echo "Installing Autoconf m4 macros"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(datadir)/aclocal
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(EXTRA_INSTALL_ARGS) $(JUGGLERROOT_ABS)/macros/gadget.m4	\
+          $(datadir)/aclocal
+
+install-flagpoll:
+	@echo "------------------------------------------------"
+	@echo "Installing Flagpoll metadata file"
+	@echo "------------------------------------------------"
+	$(SHELL) $(MKINSTALLDIRS) $(libdir)$(LIBBITSUF)/flagpoll
+	$(INSTALL) -m $(FILE_PERMS) $(GROUP_OPT_UNIX)			\
+          $(topdir)/gadgeteer.fpc 					\
+          $(libdir)$(LIBBITSUF)/flagpoll/gadgeteer-$(VERSION_DOT).$(PLATFORM).$(ISA).fpc
+
+# =============================================================================
+# Clean-up targets.  '_cleandepend' removes all the .d files in the Plugins
+# directories.  '_clobber' removes the $(BUILDDIR_BASE) and $(LIBDIR_NAME)
+# directories.
+# =============================================================================
+_cleandepend:
+
+_clobber:
+	@$(MAKE) cleandepend
+	@$(MAKE) clean-links
+
+
+# Define $(_LOCAL_CLOBBER) to inform the shared 'clobber' target that there is
+# a '_clobber' target to be run besides the standard target.
+_LOCAL_CLOBBER=		1
+_LOCAL_CLEANDEP=	1
+
+include $(MKPATH)/dpp.libs.mk
+include $(MKPATH)/dpp.clean.mk
+
+CLEAN_FILES+=	$(PARAM_HEADER)
+CLEAN_DIRS+=	$(BUILDDIR_BASE) $(LIBDIR_NAME)
+CLOBBER_DIRS+=	$(BUILDDIR_BASE) $(LIBDIR_NAME)
