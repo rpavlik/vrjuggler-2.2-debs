@@ -1,0 +1,130 @@
+# ************** <auto-copyright.pl BEGIN do not edit this line> **************
+#
+# VR Juggler is (C) Copyright 1998-2007 by Iowa State University
+#
+# Original Authors:
+#   Allen Bierbaum, Christopher Just,
+#   Patrick Hartling, Kevin Meinert,
+#   Carolina Cruz-Neira, Albert Baker
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Library General Public
+# License as published by the Free Software Foundation; either
+# version 2 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Library General Public License for more details.
+#
+# You should have received a copy of the GNU Library General Public
+# License along with this library; if not, write to the
+# Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+# Boston, MA 02111-1307, USA.
+#
+# *************** <auto-copyright.pl END do not edit this line> ***************
+
+# =============================================================================
+# This file is used only for generating and installing documentation.  The
+# variable $(webroot) should be assigned an appropriate value in order for
+# an installation to work correctly.
+#
+# The following environment variables must be set to be able to build all the
+# documentation:
+#
+#    DOCBOOK_ROOT   - The directory containing the DocBook XSL stylesheets and
+#    	              the tools needed to render DocBook documents (Batik,
+#    	              FOP, Saxon, and Xalan-J). This may be set as a "build
+#    	              variable" using a command line argumen to make(1).
+#    JAVA_HOME      - The root directory of the Java runtime installation.
+#    TWEEK_BASE_DIR - The root directory of a Tweek Java API installation
+#    		      (using <buildir>/instlinks works fine).
+#    JCCL_BASE_DIR  - The root directory of a JCCL Java API installation
+#    		      (using <buildir>/instlinks works fine).
+#
+# Furthermore, the 'doxygen' command must be in the user's path, and it is
+# generally best if the Graphviz tools are also in the user's path.
+#
+# NOTE: At present, building the Java API references for JCCL and VRJConfig is
+# rather a pain. The javadoc command needs to be able to download information
+# from www.vrjuggler.org for the Tweek and JCCL Java APIs to generate fully
+# hyperlinked content, but the automated documentation rendering process
+# complicates this. In some cases, it may be necessary to render the Tweek Java
+# API documentation & upload it and then render the JCCL Java API documentation
+# & upload it. At that point, it is then possible to render all the Java API
+# documentation using the automated process. Ugh.
+# -----------------------------------------------------------------------------
+# This makefile requires the use of GNU make.
+# =============================================================================
+
+# ******** Fill these in!! ********
+webroot=	$(HOME)/public_html/jugglerweb
+distroot=	$(HOME)/vrj-docs.dist
+# *********************************
+
+SUBDIR=		doc/build.system				\
+		modules/gadgeteer/doc				\
+		modules/gadgeteer/doc/device.driver.guide	\
+		modules/jackal/doc				\
+		modules/sonix/doc				\
+		modules/tweek/doc				\
+		modules/tweek/doc/programmer.guide		\
+		modules/vapor/doc				\
+		modules/vapor/doc/programmer.guide		\
+		modules/vrjuggler/doc/doxy			\
+		modules/vrjuggler/doc/getting.started.guide	\
+		modules/vrjuggler/doc/programmer.guide
+
+JAVADOC_SUBDIR=	modules/tweek/java		\
+		modules/jackal			\
+		modules/vrjuggler/vrjconfig
+
+all:
+ifndef TWEEK_BASE_DIR
+	$(warning TWEEK_BASE_DIR is not set)
+endif
+ifndef JCCL_BASE_DIR
+	$(warning JCCL_BASE_DIR is not set)
+endif
+	@for dir in $(SUBDIR) ; do				\
+            echo "===> $$dir" ;					\
+            $(MAKE) -C $$dir docs || exit 1;			\
+            echo "<=== $$dir" ;					\
+          done
+	@for dir in $(JAVADOC_SUBDIR) ; do			\
+            echo "===> $$dir" ;					\
+            $(MAKE) -C $$dir -f Makefile.docs docs || exit 1;	\
+            echo "<=== $$dir" ;					\
+          done
+
+install:
+	@for dir in $(SUBDIR) ; do					\
+            echo "===> $$dir" ;						\
+            $(MAKE) -C $$dir webroot=$(webroot) install-docs || exit 1;	\
+            echo "<=== $$dir" ;						\
+          done
+	@for dir in $(JAVADOC_SUBDIR) ; do				\
+            echo "===> $$dir" ;						\
+            $(MAKE) -C $$dir -f Makefile.docs install-docs || exit 1;	\
+            echo "<=== $$dir" ;						\
+          done
+
+.PHONY: release
+
+release:
+	-[ ! -d "$(distroot)" ] && mkdir -p "$(distroot)"
+	cp doc/dist/index.html "$(distroot)/"
+	cp "$(webroot)/base_style.css" "$(distroot)/"
+	$(MAKE) -f Makefile.docs webroot="$(distroot)" install
+
+clobber:
+	@for dir in $(SUBDIR) ; do					\
+            echo "===> $$dir" ;						\
+            $(MAKE) -C $$dir clobber || exit 1;				\
+            echo "<=== $$dir" ;						\
+          done
+	for dir in $(JAVADOC_SUBDIR) ; do				\
+            echo "===> $$dir" ;						\
+            $(MAKE) -C $$dir -f Makefile.docs clobber || exit 1;	\
+            echo "<=== $$dir" ;						\
+          done
