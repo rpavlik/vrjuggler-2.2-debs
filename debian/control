@@ -1,0 +1,77 @@
+Source: vrjuggler-2.2
+Maintainer: Ryan Pavlik <abiryan@ryand.net>
+Section: libs
+Priority: optional
+Build-Depends: cdbs (>=0.4.49), debhelper (>= 5), quilt, libboost-dev,
+	libboost-signals-dev, libboost-filesystem-dev, e2fslibs-dev,
+	doxygen, graphviz, uuid-dev, autoconf, automake, make, xorg-dev,
+	sun-java6-jdk, freeglut3-dev, libomniorb4-dev, python-omniorb,
+	pyqt-tools, libaudiere-dev, libboost-signals-dev, libopenal-dev,
+	libalut-dev, doozer, cppdom, gmtl, flagpoll,
+Standards-Version: 3.8.3
+Homepage: http://www.vrjuggler.org
+
+Package: vrjuggler-2.2
+Architecture: any
+Section: libs
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: VR Juggler 2.2 Suite metapackage - VR Virtual Platform
+ VR Juggler provides virtual reality (VR) software developers with a suite of
+ application programming interfaces (APIs) that abstract, and hence simplify,
+ all interface aspects of their program including the display surfaces, object
+ tracking, selection and navigation, graphics rendering engines, and graphical
+ user interfaces. An application written with VR Juggler is essentially
+ independent of device, computer platform, and VR system. VR Juggler may be run
+ with any combination of immersive technologies and computational hardware.
+
+Package: libvpr-2.0
+Section: libs
+Priority: optional
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: VR Juggler Portable Runtime (VPR) for VR Juggler 2.2.x
+ The VR Juggler Portable Runtime (VPR) provides an object-oriented
+ operating system abstraction layer that allows for easy development of
+ cross-platform C++ applications.
+
+Package: libvpr-2.0-dev
+Section: libdevel
+Priority: extra
+Architecture: any
+Depends: ${misc:Depends}, libvpr-2.0 (= ${binary:Version}), libcppdom-dev,
+	libboost-dev, libboost-signals-dev, libboost-filesystem-dev, e2fslibs-dev,
+	uuid-dev
+Recommends: flagpoll
+Description: Development files for VR Juggler Portable Runtime (VPR)
+ The VR Juggler Portable Runtime (VPR) provides an object-oriented
+ operating system abstraction layer that allows for easy development of
+ cross-platform C++ applications.
+
+Package: libtweek-cpp-1.2
+Section: libs
+Priority: optional
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Tweek C++ API for distributed applications for VR Juggler 2.2.x
+ The Tweek C++ API provides a wrapper around CORBA for writing applications
+ based on the distributed model/view/controller system. In the scope of
+ VR Juggler, such applications are usually immersive worlds that have a
+ GUI that communicates with the immersive application through a network
+ connection.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
+
+Package: libtweek-cpp-1.2-dev
+Section: libdevel
+Priority: extra
+Architecture: any
+Depends: ${misc:Depends}, libvpr-2.0 (= ${binary:Version}), libomniorb4-dev
+Recommends: flagpoll
+Description: Development files for Tweek C++ API
+ The Tweek C++ API provides a wrapper around CORBA for writing applications
+ based on the distributed model/view/controller system. In the scope of
+ VR Juggler, such applications are usually immersive worlds that have a
+ GUI that communicates with the immersive application through a network
+ connection.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
