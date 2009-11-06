@@ -10,7 +10,7 @@ DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include --with-java-orb=
 DEB_INSTALL_DOCS_ALL := $(CURDIR)/AUTHORS $(CURDIR)/ChangeLog $(CURDIR)/README
 
 DEB_MAKE_BUILD_TARGET = build
-
+DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR)
 #DEB_CONFIGURE_PREFIX =$(DEB_DESTDIR)usr
 
 CXXFLAGS += -Wno-deprecated
