@@ -51,13 +51,13 @@ Description: Development files for VR Juggler Portable Runtime (VPR)
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libtweek-cpp-1.2
+Package: libtweek-1.2
 Section: libs
 Priority: optional
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Tweek C++ API for distributed applications for VR Juggler 2.2.x
- The Tweek C++ API provides a wrapper around CORBA for writing applications
+Description: Tweek API for distributed applications for VR Juggler 2.2.x
+ The Tweek API provides a wrapper around CORBA for writing applications
  based on the distributed model/view/controller system. In the scope of
  VR Juggler, such applications are usually immersive worlds that have a
  GUI that communicates with the immersive application through a network
@@ -65,17 +65,90 @@ Description: Tweek C++ API for distributed applications for VR Juggler 2.2.x
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libtweek-cpp-1.2-dev
+Package: libtweek-1.2-dev
 Section: libdevel
 Priority: extra
 Architecture: any
-Depends: ${misc:Depends}, libvpr-2.0 (= ${binary:Version}), libomniorb4-dev
+Depends: ${misc:Depends}, libtweek-1.2 (= ${binary:Version}), libomniorb4-dev,
+	libcppdom-dev
 Recommends: flagpoll
-Description: Development files for Tweek C++ API
- The Tweek C++ API provides a wrapper around CORBA for writing applications
+Description: Development files for Tweek API
+ The Tweek API provides a wrapper around CORBA for writing applications
  based on the distributed model/view/controller system. In the scope of
  VR Juggler, such applications are usually immersive worlds that have a
  GUI that communicates with the immersive application through a network
  connection.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
+
+Package: libsonix-1.2
+Section: libs
+Priority: optional
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Audio API wrapper for VR Juggler 2.2.x
+ Sonix is a dynamically reconfigurable wrapper around audio APIs.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
+
+Package: libsonix-1.2-dev
+Section: libdevel
+Priority: extra
+Architecture: any
+Depends: ${misc:Depends}, libsonix-1.2 (= ${binary:Version}), libgmtl-dev,
+	libcppdom-devl, libopenal-dev, libalut-dev
+Recommends: flagpoll
+Description: Development files for Sonix audio API wrapper
+ Sonix is a dynamically reconfigurable wrapper around audio APIs.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
+
+Package: libgadgeteer-1.2
+Section: libs
+Priority: optional
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Input device manager for VR Juggler 2.2.x
+ Gadgeteer is an extensible, highly configurable, cluster-ready input
+ device management for use with virtual reality applications. Users can
+ write Device drivers that are loaded dynamically.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
+
+Package: libgadgeteer-1.2-dev
+Section: libdevel
+Priority: extra
+Architecture: any
+Depends: ${misc:Depends}, libgadgeteer-1.2 (= ${binary:Version}), libgmtl-dev,
+	libvpr-2.0-dev, libjccl-1.2-dev
+Recommends: flagpoll
+Description: Development files for Gadgeteer input device manager
+ Gadgeteer is an extensible, highly configurable, cluster-ready input
+ device management for use with virtual reality applications. Users can
+ write Device drivers that are loaded dynamically.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
+
+Package: libvrj-2.2
+Section: libs
+Priority: optional
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Core libraries for VR Juggler 2.2.x
+ The libraries needed for running and developing VR applications using
+ VR Juggler.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
+
+Package: libvrj-2.2-dev
+Section: libdevel
+Priority: extra
+Architecture: any
+Depends: ${misc:Depends}, libvrj-2.2 (= ${binary:Version}), libgmtl-dev,
+	libvpr-2.0-dev, libjccl-1.2-dev, libgadgeteer-1.2-dev, libsonix-1.2-dev,
+Recommends: flagpoll
+Description: Development files for VR Juggler 2.2 core libraries
+ The libraries needed for running and developing VR applications using
+ VR Juggler.
  .
  This package is a part of the VR Juggler 2.2 suite.
