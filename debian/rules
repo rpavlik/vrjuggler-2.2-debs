@@ -10,9 +10,9 @@ DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include --with-java-orb=
 							--with-gmtl=/usr --with-openal=/usr --with-audiere=/usr
 
 DEB_BUILDDIR := $(CURDIR)/debian/build/
-DEB_MAKE_CLEAN_TARGET := clean
-DEB_MAKE_BUILD_TARGET := build prefix=/usr DESTDIR=$(DEB_DESTDIR)
-DEB_MAKE_INSTALL_TARGET  := install DESTDIR=$(DEB_DESTDIR)
+DEB_MAKE_CLEAN_TARGET := clean cleandepend clobber
+DEB_MAKE_BUILD_TARGET := build prefix=$(DEB_DESTDIR)/usr DESTDIR=$(DEB_DESTDIR)
+DEB_MAKE_INSTALL_TARGET  := install prefix=$(DEB_DESTDIR)/usr  DESTDIR=$(DEB_DESTDIR)
 DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR) DESTDIR=$(DEB_DESTDIR)
 
 #DEB_CONFIGURE_PREFIX =$(DEB_DESTDIR)usr
