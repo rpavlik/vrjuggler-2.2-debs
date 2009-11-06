@@ -11,7 +11,7 @@ DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include --with-java-orb=
 
 DEB_BUILDDIR := $(CURDIR)/debian/build/
 DEB_MAKE_CLEAN_TARGET := clean
-DEB_MAKE_BUILD_TARGET := BUILD_PROF_C=N BUILD_PROF_CXX=N build prefix=/usr DESTDIR=$(DEB_DESTDIR)
+DEB_MAKE_BUILD_TARGET := build prefix=/usr DESTDIR=$(DEB_DESTDIR)
 DEB_MAKE_INSTALL_TARGET  := install DESTDIR=$(DEB_DESTDIR)
 DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR) DESTDIR=$(DEB_DESTDIR)
 
@@ -29,6 +29,9 @@ FLAGS := -Wno-deprecated
 
 CXXFLAGS += $(FLAGS)
 CFLAGS += $(FLAGS)
+
+makebuilddir/vrjuggler-2.2::
+	./autogen.sh
 
 clean::
 	-rm -f config.log config.status Makefile debian/*~
