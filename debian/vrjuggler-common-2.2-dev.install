@@ -1,0 +1,4 @@
+usr/lib/flagpoll/boost_system*
+usr/lib/flagpoll/boost_filesystem*
+usr/lib/flagpoll/boost-*
+usr/lib/flagpoll/boost_signals*
