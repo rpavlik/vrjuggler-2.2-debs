@@ -1,0 +1,5 @@
+usr/lib/flagpoll/jccl-1.2*
+usr/share/aclocal/jccl.m4
+usr/lib/i686/libjccl-1_2.a
+usr/lib/i686/debug/libjccl-1_2.a
+usr/lib/i686/opt/libjccl-1_2.a

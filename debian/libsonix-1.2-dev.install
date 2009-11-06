@@ -1,0 +1,7 @@
+usr/lib/flagpoll/sonix-1.2*
+usr/include/sonix-1.2
+usr/share/aclocal/sonix.m4
+usr/lib/libsonix-1_2.a
+usr/lib/i686/libsonix-1_2.a
+usr/lib/i686/debug/libsonix-1_2.a
+usr/lib/i686/opt/libsonix-1_2.a
