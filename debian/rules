@@ -9,15 +9,27 @@ DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include --with-java-orb=
 							--with-gmtl=/usr --with-openal=/usr --with-audiere=/usr
 DEB_INSTALL_DOCS_ALL := $(CURDIR)/AUTHORS $(CURDIR)/ChangeLog $(CURDIR)/README
 
-DEB_MAKE_BUILD_TARGET = build
+DEB_MAKE_BUILD_TARGET = BUILD_PROF_C=N BUILD_PROF_CXX=N build install prefix=$(DEB_DESTDIR)/usr
+DEB_MAKE_CLEAN_TARGET = clean
 DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR)
 #DEB_CONFIGURE_PREFIX =$(DEB_DESTDIR)usr
 
-CXXFLAGS += -Wno-deprecated
-CFLAGS += -Wno-deprecated
+DEB_BUILDDIR = $(CURDIR)/debian/build
+
+FLAGS = -Wno-deprecated
+FLAGS += -I$(DEB_DESTDIR)/usr/include/vpr-2.0
+FLAGS += -I$(DEB_DESTDIR)/usr/include/jccl-1.2
+FLAGS += -I$(DEB_DESTDIR)/usr/include/gadgeteer-1.2
+FLAGS += -I$(DEB_DESTDIR)/usr/include/tweek-1.2
+FLAGS += -I$(DEB_DESTDIR)/usr/include/sonix-1.2
+FLAGS += -I$(DEB_DESTDIR)/usr/include/vrjuggler-2.2
+
+CXXFLAGS += $(FLAGS)
+CFLAGS += $(FLAGS)
 
 clean::
 	-rm -f config.log config.status Makefile debian/*~
+	-rm -rf debian/build
 
 
 # workaround for http://bugs.debian.org/526392
