@@ -5,24 +5,27 @@ include /usr/share/cdbs/1/class/autotools.mk
 #include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
 DEB_CONFIGURE_SCRIPT := $(CURDIR)/$(DEB_SRCDIR)/configure.pl
+DEB_CONFIGURE_NORMAL_ARGS := --prefix=/usr DESTDIR=$(DEB_DESTDIR)
 DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include --with-java-orb=JDK \
 							--with-gmtl=/usr --with-openal=/usr --with-audiere=/usr
-DEB_INSTALL_DOCS_ALL := $(CURDIR)/AUTHORS $(CURDIR)/ChangeLog $(CURDIR)/README
 
-DEB_MAKE_BUILD_TARGET = BUILD_PROF_C=N BUILD_PROF_CXX=N build install prefix=$(DEB_DESTDIR)/usr
-DEB_MAKE_CLEAN_TARGET = clean
-DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR)
+DEB_BUILDDIR := $(CURDIR)/debian/build/
+DEB_MAKE_CLEAN_TARGET := clean
+DEB_MAKE_BUILD_TARGET := BUILD_PROF_C=N BUILD_PROF_CXX=N build prefix=/usr DESTDIR=$(DEB_DESTDIR)
+DEB_MAKE_INSTALL_TARGET  := install DESTDIR=$(DEB_DESTDIR)
+DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR) DESTDIR=$(DEB_DESTDIR)
+
 #DEB_CONFIGURE_PREFIX =$(DEB_DESTDIR)usr
 
-DEB_BUILDDIR = $(CURDIR)/debian/build
 
-FLAGS = -Wno-deprecated
-FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/vpr-2.0
-FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/jccl-1.2
-FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/gadgeteer-1.2
-FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/tweek-1.2
-FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/sonix-1.2
-FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/vrjuggler-2.2
+DEB_INSTALL_DOCS_ALL := $(CURDIR)/AUTHORS $(CURDIR)/ChangeLog $(CURDIR)/README
+FLAGS := -Wno-deprecated
+#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/vpr-2.0
+#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/jccl-1.2
+#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/gadgeteer-1.2
+#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/tweek-1.2
+#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/sonix-1.2
+#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/vrjuggler-2.2
 
 CXXFLAGS += $(FLAGS)
 CFLAGS += $(FLAGS)
