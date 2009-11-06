@@ -33,6 +33,8 @@ Description: VR Juggler Portable Runtime (VPR) for VR Juggler 2.2.x
  The VR Juggler Portable Runtime (VPR) provides an object-oriented
  operating system abstraction layer that allows for easy development of
  cross-platform C++ applications.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
 
 Package: libvpr-2.0-dev
 Section: libdevel
@@ -46,6 +48,8 @@ Description: Development files for VR Juggler Portable Runtime (VPR)
  The VR Juggler Portable Runtime (VPR) provides an object-oriented
  operating system abstraction layer that allows for easy development of
  cross-platform C++ applications.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
 
 Package: libtweek-cpp-1.2
 Section: libs
