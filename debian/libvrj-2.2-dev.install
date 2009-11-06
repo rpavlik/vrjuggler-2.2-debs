@@ -3,7 +3,6 @@ usr/lib/flagpoll/vrjuggler-2.2*
 usr/include/vrjuggler-2.2
 usr/share/doc/vrjuggler
 usr/share/aclocal/vrj.m4
-usr/share/aclocal/vrj-helpers.m4
 usr/lib/libvrj_ogl-2_2.a
 usr/lib/i686/libvrj_ogl-2_2.a
 usr/lib/i686/libvrj-2_2.a
