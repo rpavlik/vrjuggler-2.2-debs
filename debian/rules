@@ -1,0 +1,21 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/autotools.mk
+#include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+DEB_CONFIGURE_SCRIPT := $(CURDIR)/$(DEB_SRCDIR)/configure.pl
+DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include --with-java-orb=JDK \
+							--with-gmtl=/usr --with-openal=/usr --with-audiere=/usr
+DEB_INSTALL_DOCS_ALL := $(CURDIR)/AUTHORS $(CURDIR)/ChangeLog $(CURDIR)/README
+
+#DEB_CONFIGURE_PREFIX =$(DEB_DESTDIR)usr
+
+
+clean::
+	-rm -f config.log config.status Makefile debian/*~
+
+
+# workaround for http://bugs.debian.org/526392
+#QUILT_PATCH_DIR := debian/patches
+#QUILT_STAMPFN := patch
+#-include /usr/share/topgit/tg2quilt.mk
