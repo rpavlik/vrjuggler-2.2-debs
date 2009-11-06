@@ -17,12 +17,12 @@ DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR)
 DEB_BUILDDIR = $(CURDIR)/debian/build
 
 FLAGS = -Wno-deprecated
-FLAGS += -I$(DEB_DESTDIR)/usr/include/vpr-2.0
-FLAGS += -I$(DEB_DESTDIR)/usr/include/jccl-1.2
-FLAGS += -I$(DEB_DESTDIR)/usr/include/gadgeteer-1.2
-FLAGS += -I$(DEB_DESTDIR)/usr/include/tweek-1.2
-FLAGS += -I$(DEB_DESTDIR)/usr/include/sonix-1.2
-FLAGS += -I$(DEB_DESTDIR)/usr/include/vrjuggler-2.2
+FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/vpr-2.0
+FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/jccl-1.2
+FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/gadgeteer-1.2
+FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/tweek-1.2
+FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/sonix-1.2
+FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/vrjuggler-2.2
 
 CXXFLAGS += $(FLAGS)
 CFLAGS += $(FLAGS)
