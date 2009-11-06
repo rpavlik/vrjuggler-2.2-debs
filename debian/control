@@ -2,9 +2,9 @@ Source: vrjuggler-2.2
 Maintainer: Ryan Pavlik <abiryan@ryand.net>
 Section: libs
 Priority: optional
-Build-Depends: cdbs (>=0.4.49), debhelper (>= 5), quilt, libboost-dev,
+Build-Depends: cdbs (>=0.4.49), debhelper (>= 5), libboost-dev,
 	libboost-signals-dev, libboost-filesystem-dev, e2fslibs-dev,
-	doxygen, graphviz, uuid-dev, autoconf, automake, make, xorg-dev,
+	doxygen, graphviz, uuid-dev, autoconf, automake, xserver-xorg-dev,
 	sun-java6-jdk, freeglut3-dev, libomniorb4-dev, python-omniorb,
 	pyqt-tools, libaudiere-dev, libboost-signals-dev, libopenal-dev,
 	libalut-dev, doozer, cppdom, gmtl, flagpoll,
