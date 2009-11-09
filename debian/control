@@ -8,7 +8,7 @@ Build-Depends: autoconf, automake, cdbs (>=0.4.49), cppdom, debhelper (>= 5),
 	libboost-filesystem-dev, libboost-python-dev, libboost-signals-dev,
 	libcppunit-dev, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev,
 	libjogl-java, libjogl-jni, libomniorb4-dev, libomnithread3-dev,
-	libopenal-dev, omniidl4, omniidl4-python, openjdk-java6-jdk,
+	libopenal-dev, omniidl4, omniidl4-python, openjdk-6-jdk,
 	portaudio19-dev, pyqt-tools, python-omniorb, python-omniorb-omg,
 	uuid-dev, xserver-xorg-dev
 Standards-Version: 3.8.3
