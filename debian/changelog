@@ -1,8 +1,15 @@
-vrjuggler-2.2 (2.2.1+svn21146~rp4~karmic1) karmic; urgency=low
+vrjuggler-2.2 (2.2.1+svn21146~rp5~karmic1) karmic; urgency=low
 
   * Port to karmic.
 
- -- Ryan Pavlik <abiryan@ryand.net>  Mon, 09 Nov 2009 10:21:47 -0600
+ -- Ryan Pavlik <abiryan@ryand.net>  Mon, 09 Nov 2009 12:37:22 -0600
+
+vrjuggler-2.2 (2.2.1+svn21146~rp5) karmic; urgency=low
+
+  * Remove JOGL JNI build-dep to fix lpia arch.
+  * Move boost+vrj flagpoll files to vpr-dev and make them more general.
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Mon, 09 Nov 2009 12:37:22 -0600
 
 vrjuggler-2.2 (2.2.1+svn21146~rp4) jaunty; urgency=low
 
