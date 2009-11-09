@@ -1,8 +1,14 @@
-vrjuggler-2.2 (2.2.1+svn21146~rp3~intrepid1) intrepid; urgency=low
+vrjuggler-2.2 (2.2.1+svn21146~rp4~intrepid1) intrepid; urgency=low
 
   * Port to intrepid.
 
- -- Ryan Pavlik <abiryan@ryand.net>  Mon, 09 Nov 2009 09:52:16 -0600
+ -- Ryan Pavlik <abiryan@ryand.net>  Mon, 09 Nov 2009 10:21:47 -0600
+
+vrjuggler-2.2 (2.2.1+svn21146~rp4) jaunty; urgency=low
+
+  * Fix cppdom build dep
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Mon, 09 Nov 2009 10:21:47 -0600
 
 vrjuggler-2.2 (2.2.1+svn21146~rp3) jaunty; urgency=low
 
