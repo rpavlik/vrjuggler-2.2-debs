@@ -1,3 +1,9 @@
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp3) jaunty; urgency=low
+
+  * Remove incorrect install path from libvrj-2.2-dev.install
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Tue, 10 Nov 2009 17:12:21 -0600
+
 vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp2) jaunty; urgency=low
 
   * Make sure we clean up Mac OS X-created edit byproducts.
