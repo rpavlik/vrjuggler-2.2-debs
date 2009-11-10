@@ -1,7 +1,6 @@
 debian/tmp/usr/lib/flagpoll/vrjuggler-opengl-2.2*
 debian/tmp/usr/lib/flagpoll/vrjuggler-2.2*
 debian/tmp/usr/include/vrjuggler-2.2
-debian/tmp/usr/share/doc/vrjuggler
 debian/tmp/usr/share/aclocal/vrj.m4
 debian/tmp/usr/lib/libvrj_ogl-2_2.a
 debian/tmp/usr/lib/i686/libvrj_ogl-2_2.a
