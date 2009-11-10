@@ -1,7 +1,5 @@
 #!/usr/bin/make -f
 
-DEB_AUTO_UPDATE_AUTOCONF = 2.63
-
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 #include /usr/share/cdbs/1/rules/patchsys-quilt.mk
@@ -17,7 +15,7 @@ CFLAGS += $(FLAGS)
 
 DEB_BUILDDIR := $(CURDIR)/debian/build/
 
-DEB_MAKE_CLEAN_TARGET := clean cleandepend clobber
+DEB_MAKE_CLEAN_TARGET := distclean clean cleandepend clobber
 DEB_MAKE_BUILD_TARGET :=
 DEB_MAKE_INSTALL_TARGET  := release prefix=$(DEB_DESTDIR)/usr  DESTDIR=$(DEB_DESTDIR)
 DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR) DESTDIR=$(DEB_DESTDIR)
