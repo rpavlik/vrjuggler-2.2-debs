@@ -3,15 +3,40 @@ Maintainer: Ryan Pavlik <abiryan@ryand.net>
 Section: libs
 Priority: optional
 Build-Depends: autoconf, automake, cdbs (>=0.4.49), debhelper (>= 5),
-	doozer, doxygen, e2fslibs-dev, flagpoll, freeglut3-dev, gmtl, graphviz,
-	junit, junit4, libalut-dev, libaudiere-dev, libboost-dev,
-	libboost-filesystem-dev, libboost-python-dev, libboost-signals-dev,
-	libcppdom-dev | cppdom, libcppunit-dev, libgl1-mesa-dev | libgl-dev,
-	libglu1-mesa-dev | libglu-dev, libomniorb4-dev,
-	libomnithread3-dev, libopenal-dev, libusb-dev, omniidl4, omniidl4-python,
-	openjdk-6-jdk, portaudio19-dev, pyqt-tools, python-omniorb,
-	python-omniorb-omg, uuid-dev, xserver-xorg-dev,
-	libjogl-java [!lpia], libjogl-jni [!lpia]
+	doozer,
+	doxygen,
+	e2fslibs-dev,
+	flagpoll,
+	freeglut3-dev,
+	gmtl,
+	graphviz,
+	junit,
+	junit4,
+	libalut-dev,
+	libaudiere-dev,
+	libboost-dev,
+	libboost-filesystem-dev,
+	libboost-python-dev,
+	libboost-signals-dev,
+	libcppdom-dev | cppdom,
+	libcppunit-dev,
+	libgl1-mesa-dev | libgl-dev,
+	libglu1-mesa-dev | libglu-dev,
+	libomniorb4-dev,
+	libomnithread3-dev,
+	libopenal-dev,
+	libusb-dev,
+	omniidl4,
+	omniidl4-python,
+	openjdk-6-jdk,
+	portaudio19-dev,
+	pyqt-tools,
+	python-omniorb,
+	python-omniorb-omg,
+	uuid-dev,
+	xserver-xorg-dev,
+	libjogl-java [!lpia],
+	libjogl-jni [!lpia]
 Build-Conflicts: autoconf2.13, automake1.4
 Standards-Version: 3.8.3
 Homepage: http://www.vrjuggler.org
@@ -37,6 +62,7 @@ Package: vrjuggler-2.2-dev
 Architecture: any
 Section: libdevel
 Priority: extra
+Replaces: vrjuggler (<= 2.2.1+svnpatched-1)
 Depends: ${misc:Depends}, ${shlibs:Depends}, libvpr-2.0-dev, libtweek-1.2-dev,
 	libsonix-1.2-dev, libgadgeteer-1.2-dev, libvrj-2.2-dev, vrjuggler-2.2
 Description: VR Juggler 2.2 Suite development metapackage - VR Virtual Platform
