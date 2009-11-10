@@ -1,6 +1,9 @@
 vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp1~karmic1) karmic; urgency=low
 
   * Port to karmic.
+  * Add build-dep on libboost-system-dev because Karmic uses boost 1.38
+    (that is, >= 1.35) by default, so boost-system is no longer inside
+    of boost-filesystem
 
  -- Ryan Pavlik <abiryan@ryand.net>  Tue, 10 Nov 2009 12:23:18 -0600
 
