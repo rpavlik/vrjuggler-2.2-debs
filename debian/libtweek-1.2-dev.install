@@ -1,5 +1,5 @@
-usr/lib/flagpoll/tweek-1.2*
-usr/lib/flagpoll/tweek-python-1.2*
-usr/lib/flagpoll/tweek-java-1.2*
-usr/include/tweek-1.2
-usr/share/aclocal/tweek.m4
+debian/tmp/usr/lib/flagpoll/tweek-1.2*
+debian/tmp/usr/lib/flagpoll/tweek-python-1.2*
+debian/tmp/usr/lib/flagpoll/tweek-java-1.2*
+debian/tmp/usr/include/tweek-1.2
+debian/tmp/usr/share/aclocal/tweek.m4
