@@ -27,7 +27,11 @@ makebuilddir/vrjuggler-2.2::
 	chmod a+x $(CURDIR)/debian/vrjuggler-env.sh
 
 clean::
-	-rm -f config.log config.status Makefile debian/*~
+	# Clean up editing detritus
+	-rm -f debian/*~ debian/._* .DS_Store
+
+	# Clean up common build products
+	-rm -f config.log config.status Makefile
 	-rm -rf debian/build
 
 	# Remove source build-generated files that make clean+friends misses.

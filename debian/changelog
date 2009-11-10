@@ -1,8 +1,15 @@
-vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp1~intrepid1) intrepid; urgency=low
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp2~intrepid1) intrepid; urgency=low
 
   * Port to intrepid.
 
- -- Ryan Pavlik <abiryan@ryand.net>  Tue, 10 Nov 2009 12:23:18 -0600
+ -- Ryan Pavlik <abiryan@ryand.net>  Tue, 10 Nov 2009 15:14:11 -0600
+
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp2) jaunty; urgency=low
+
+  * Make sure we clean up Mac OS X-created edit byproducts.
+  * Modify install files to add debian/tmp prefixes
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Tue, 10 Nov 2009 15:14:11 -0600
 
 vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp1) jaunty; urgency=low
 
