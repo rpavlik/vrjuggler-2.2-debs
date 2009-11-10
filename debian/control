@@ -8,7 +8,7 @@ Build-Depends: autoconf, automake, cdbs (>=0.4.49), debhelper (>= 5),
 	libboost-filesystem-dev, libboost-python-dev, libboost-signals-dev,
 	libcppdom-dev | cppdom, libcppunit-dev, libgl1-mesa-dev | libgl-dev,
 	libglu1-mesa-dev | libglu-dev, libomniorb4-dev,
-	libomnithread3-dev, libopenal-dev, omniidl4, omniidl4-python,
+	libomnithread3-dev, libopenal-dev, libusb-dev, omniidl4, omniidl4-python,
 	openjdk-6-jdk, portaudio19-dev, pyqt-tools, python-omniorb,
 	python-omniorb-omg, uuid-dev, xserver-xorg-dev,
 	libjogl-java [!lpia], libjogl-jni [!lpia]
@@ -29,6 +29,9 @@ Description: VR Juggler 2.2 Suite metapackage - VR Virtual Platform
  user interfaces. An application written with VR Juggler is essentially
  independent of device, computer platform, and VR system. VR Juggler may be run
  with any combination of immersive technologies and computational hardware.
+ .
+ Install this package to install all libraries needed to run VR Juggler-based
+ applications that have already been compiled.
 
 Package: vrjuggler-2.2-dev
 Architecture: any
@@ -44,6 +47,9 @@ Description: VR Juggler 2.2 Suite development metapackage - VR Virtual Platform
  user interfaces. An application written with VR Juggler is essentially
  independent of device, computer platform, and VR system. VR Juggler may be run
  with any combination of immersive technologies and computational hardware.
+ .
+ Install this package to install all libraries and development files needed
+ to compile and run applications against VR Juggler 2.2.
 
 Package: vrjuggler-common-2.2
 Architecture: all
@@ -58,6 +64,12 @@ Description: VR Juggler 2.2 Suite common files
  user interfaces. An application written with VR Juggler is essentially
  independent of device, computer platform, and VR system. VR Juggler may be run
  with any combination of immersive technologies and computational hardware.
+ .
+ This package provides files common to all VR Juggler 2.2 Suite components,
+ and should be automatically installed when installing any such component.
+ You normally will not manually install this on its own.
+ .
+ For a full VR Juggler 2.2 runtime installation, install vrjuggler-2.2
 
 Package: vrjuggler-common-2.2-dev
 Architecture: any
@@ -72,6 +84,13 @@ Description: VR Juggler 2.2 Suite common files - development
  user interfaces. An application written with VR Juggler is essentially
  independent of device, computer platform, and VR system. VR Juggler may be run
  with any combination of immersive technologies and computational hardware.
+ .
+ This package provides development files common to all VR Juggler 2.2
+ Suite components, and should be automatically installed when installing any
+ such component.  You normally will not manually install this on its own.
+ .
+ For a full VR Juggler 2.2 runtime and development installation, install
+ vrjuggler-2.2-dev
 
 Package: libvpr-2.0
 Section: libs
@@ -84,6 +103,8 @@ Description: VR Juggler Portable Runtime (VPR) for VR Juggler 2.2.x
  cross-platform C++ applications.
  .
  This package is a part of the VR Juggler 2.2 suite.
+ .
+ For a full VR Juggler 2.2 runtime installation, install vrjuggler-2.2
 
 Package: libvpr-2.0-dev
 Section: libdevel
@@ -98,7 +119,11 @@ Description: Development files for VR Juggler Portable Runtime (VPR)
  operating system abstraction layer that allows for easy development of
  cross-platform C++ applications.
  .
- This package is a part of the VR Juggler 2.2 suite.
+ This package is a part of the VR Juggler 2.2 suite, and provides headers
+ and other files required to compile applications using this component.
+ .
+ For a full VR Juggler 2.2 runtime and development installation, install
+ vrjuggler-2.2-dev
 
 Package: libtweek-1.2
 Section: libs
@@ -113,6 +138,8 @@ Description: Tweek API for distributed applications for VR Juggler 2.2.x
  connection.
  .
  This package is a part of the VR Juggler 2.2 suite.
+ .
+ For a full VR Juggler 2.2 runtime installation, install vrjuggler-2.2
 
 Package: libtweek-1.2-dev
 Section: libdevel
@@ -128,7 +155,11 @@ Description: Development files for Tweek API
  GUI that communicates with the immersive application through a network
  connection.
  .
- This package is a part of the VR Juggler 2.2 suite.
+ This package is a part of the VR Juggler 2.2 suite, and provides headers
+ and other files required to compile applications using this component.
+ .
+ For a full VR Juggler 2.2 runtime and development installation, install
+ vrjuggler-2.2-dev
 
 Package: libsonix-1.2
 Section: libs
@@ -139,6 +170,8 @@ Description: Audio API wrapper for VR Juggler 2.2.x
  Sonix is a dynamically reconfigurable wrapper around audio APIs.
  .
  This package is a part of the VR Juggler 2.2 suite.
+ .
+ For a full VR Juggler 2.2 runtime installation, install vrjuggler-2.2
 
 Package: libsonix-1.2-dev
 Section: libdevel
@@ -150,7 +183,11 @@ Recommends: flagpoll
 Description: Development files for Sonix audio API wrapper
  Sonix is a dynamically reconfigurable wrapper around audio APIs.
  .
- This package is a part of the VR Juggler 2.2 suite.
+ This package is a part of the VR Juggler 2.2 suite, and provides headers
+ and other files required to compile applications using this component.
+ .
+ For a full VR Juggler 2.2 runtime and development installation, install
+ vrjuggler-2.2-dev
 
 Package: libgadgeteer-1.2
 Section: libs
@@ -163,6 +200,8 @@ Description: Input device manager for VR Juggler 2.2.x
  write Device drivers that are loaded dynamically.
  .
  This package is a part of the VR Juggler 2.2 suite.
+ .
+ For a full VR Juggler 2.2 runtime installation, install vrjuggler-2.2
 
 Package: libgadgeteer-1.2-dev
 Section: libdevel
@@ -176,7 +215,11 @@ Description: Development files for Gadgeteer input device manager
  device management for use with virtual reality applications. Users can
  write Device drivers that are loaded dynamically.
  .
- This package is a part of the VR Juggler 2.2 suite.
+ This package is a part of the VR Juggler 2.2 suite, and provides headers
+ and other files required to compile applications using this component.
+ .
+ For a full VR Juggler 2.2 runtime and development installation, install
+ vrjuggler-2.2-dev
 
 Package: libvrj-2.2
 Section: libs
@@ -188,6 +231,8 @@ Description: Core libraries for VR Juggler 2.2.x
  VR Juggler.
  .
  This package is a part of the VR Juggler 2.2 suite.
+ .
+ For a full VR Juggler 2.2 runtime installation, install vrjuggler-2.2
 
 Package: libvrj-2.2-dev
 Section: libdevel
@@ -201,4 +246,8 @@ Description: Development files for VR Juggler 2.2 core libraries
  The libraries needed for running and developing VR applications using
  VR Juggler.
  .
- This package is a part of the VR Juggler 2.2 suite.
+ This package is a part of the VR Juggler 2.2 suite, and provides headers
+ and other files required to compile applications using this component.
+ .
+ For a full VR Juggler 2.2 runtime and development installation, install
+ vrjuggler-2.2-dev
