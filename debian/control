@@ -7,10 +7,11 @@ Build-Depends: autoconf, automake, cdbs (>=0.4.49), debhelper (>= 5),
 	junit, junit4, libalut-dev, libaudiere-dev, libboost-dev,
 	libboost-filesystem-dev, libboost-python-dev, libboost-signals-dev,
 	libcppdom-dev | cppdom, libcppunit-dev, libgl1-mesa-dev | libgl-dev,
-	libglu1-mesa-dev | libglu-dev, libjogl-java, libomniorb4-dev,
+	libglu1-mesa-dev | libglu-dev, libomniorb4-dev,
 	libomnithread3-dev, libopenal-dev, omniidl4, omniidl4-python,
 	openjdk-6-jdk, portaudio19-dev, pyqt-tools, python-omniorb,
-	python-omniorb-omg, uuid-dev, xserver-xorg-dev
+	python-omniorb-omg, uuid-dev, xserver-xorg-dev,
+	libjogl-java [!lpia], libjogl-jni [!lpia]
 Standards-Version: 3.8.3
 Homepage: http://www.vrjuggler.org
 
