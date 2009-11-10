@@ -1,8 +1,22 @@
-vrjuggler-2.2 (2.2.1+svn21146~rp5~intrepid1) intrepid; urgency=low
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp1~intrepid1) intrepid; urgency=low
 
   * Port to intrepid.
 
- -- Ryan Pavlik <abiryan@ryand.net>  Mon, 09 Nov 2009 12:37:22 -0600
+ -- Ryan Pavlik <abiryan@ryand.net>  Tue, 10 Nov 2009 12:23:18 -0600
+
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp1) jaunty; urgency=low
+
+  * Rename version to fix use of orig.tar.gz
+  * Make both JOGL build-deps not appear on lpia arch.
+  * Add debian/README.source to indicate location of upstream SVN source
+    and possible caveats in accessing it.
+  * Re-run autoconf using CDBS.
+  * Remove all build-generated files in debian/rules clean target.
+  * Improve component package descriptions.
+  * Add libusb-dev build-dep (suggested by configure log)
+  * Ensure vrjuggler-env.sh script is executable to set profile variables.
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Tue, 10 Nov 2009 12:23:18 -0600
 
 vrjuggler-2.2 (2.2.1+svn21146~rp5) karmic; urgency=low
 

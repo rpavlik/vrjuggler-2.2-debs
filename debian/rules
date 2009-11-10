@@ -9,34 +9,31 @@ DEB_CONFIGURE_NORMAL_ARGS := --prefix=/usr DESTDIR=$(DEB_DESTDIR)
 DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include --with-java-orb=JDK \
 							--with-gmtl=/usr --with-openal=/usr --with-audiere=/usr
 
+FLAGS := -Wno-deprecated
+CXXFLAGS += $(FLAGS)
+CFLAGS += $(FLAGS)
+
 DEB_BUILDDIR := $(CURDIR)/debian/build/
-DEB_MAKE_CLEAN_TARGET := clean cleandepend clobber
+
+DEB_MAKE_CLEAN_TARGET := distclean clean cleandepend clobber
 DEB_MAKE_BUILD_TARGET :=
 DEB_MAKE_INSTALL_TARGET  := release prefix=$(DEB_DESTDIR)/usr  DESTDIR=$(DEB_DESTDIR)
 DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR) DESTDIR=$(DEB_DESTDIR)
 
-#DEB_CONFIGURE_PREFIX =$(DEB_DESTDIR)usr
-
-
 DEB_INSTALL_DOCS_ALL := $(CURDIR)/README.txt $(CURDIR)/README.html $(CURDIR)/README-WINDOWS.html
-FLAGS := -Wno-deprecated
-#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/vpr-2.0
-#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/jccl-1.2
-#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/gadgeteer-1.2
-#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/tweek-1.2
-#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/sonix-1.2
-#FLAGS += -I$(DEB_BUILDDIR)/instlinks/include/vrjuggler-2.2
-
-CXXFLAGS += $(FLAGS)
-CFLAGS += $(FLAGS)
 
 makebuilddir/vrjuggler-2.2::
 	./autogen.sh
+	chmod a+x $(CURDIR)/debian/vrjuggler-env.sh
 
 clean::
 	-rm -f config.log config.status Makefile debian/*~
 	-rm -rf debian/build
 
+	# Remove source build-generated files that make clean+friends misses.
+	find $(CURDIR) -name aclocal.m4 | xargs rm -f
+	find $(CURDIR) -name configure | xargs rm -f
+	find $(CURDIR) -name *Defines.h.in | xargs rm -f
 
 # workaround for http://bugs.debian.org/526392
 #QUILT_PATCH_DIR := debian/patches
