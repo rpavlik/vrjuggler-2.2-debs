@@ -1,9 +1,10 @@
-vrjuggler-2.2 (2.2.1.21146~rp1) jaunty; urgency=low
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp1) jaunty; urgency=low
 
   * Rename version to attempt to fix use of orig.tar.gz
   * Make both JOGL build-deps not appear on lpia arch.
   * Add debian/README.source to indicate location of upstream SVN source
     and possible caveats in accessing it.
+  * Re-run autoconf using CDBS.
 
  -- Ryan Pavlik <abiryan@ryand.net>  Tue, 10 Nov 2009 09:54:54 -0600
 

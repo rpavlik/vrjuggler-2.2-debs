@@ -12,6 +12,7 @@ Build-Depends: autoconf, automake, cdbs (>=0.4.49), debhelper (>= 5),
 	openjdk-6-jdk, portaudio19-dev, pyqt-tools, python-omniorb,
 	python-omniorb-omg, uuid-dev, xserver-xorg-dev,
 	libjogl-java [!lpia], libjogl-jni [!lpia]
+Build-Conflicts: autoconf2.13, automake1.4
 Standards-Version: 3.8.3
 Homepage: http://www.vrjuggler.org
 
@@ -72,7 +73,7 @@ Description: VR Juggler 2.2 Suite common files - development
  independent of device, computer platform, and VR system. VR Juggler may be run
  with any combination of immersive technologies and computational hardware.
 
-Package: libvpr-2.0 (2.0.1.r21146)
+Package: libvpr-2.0
 Section: libs
 Priority: optional
 Architecture: any
@@ -84,7 +85,7 @@ Description: VR Juggler Portable Runtime (VPR) for VR Juggler 2.2.x
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libvpr-2.0-dev (2.0.1.r21146)
+Package: libvpr-2.0-dev
 Section: libdevel
 Priority: extra
 Architecture: any
@@ -99,7 +100,7 @@ Description: Development files for VR Juggler Portable Runtime (VPR)
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libtweek-1.2 (1.2.1.r21146)
+Package: libtweek-1.2
 Section: libs
 Priority: optional
 Architecture: any
@@ -113,7 +114,7 @@ Description: Tweek API for distributed applications for VR Juggler 2.2.x
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libtweek-1.2-dev (1.2.1.r21146)
+Package: libtweek-1.2-dev
 Section: libdevel
 Priority: extra
 Architecture: any
@@ -129,7 +130,7 @@ Description: Development files for Tweek API
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libsonix-1.2 (1.2.1.r21146)
+Package: libsonix-1.2
 Section: libs
 Priority: optional
 Architecture: any
@@ -139,7 +140,7 @@ Description: Audio API wrapper for VR Juggler 2.2.x
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libsonix-1.2-dev (1.2.1.r21146)
+Package: libsonix-1.2-dev
 Section: libdevel
 Priority: extra
 Architecture: any
@@ -151,7 +152,7 @@ Description: Development files for Sonix audio API wrapper
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libgadgeteer-1.2 (1.2.1.r21146)
+Package: libgadgeteer-1.2
 Section: libs
 Priority: optional
 Architecture: any
@@ -163,7 +164,7 @@ Description: Input device manager for VR Juggler 2.2.x
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libgadgeteer-1.2-dev (1.2.1.r21146)
+Package: libgadgeteer-1.2-dev
 Section: libdevel
 Priority: extra
 Architecture: any
