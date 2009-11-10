@@ -1,7 +1,8 @@
-usr/share/tweek-1.2
-usr/bin/logkit-1.2.jar
-usr/bin/idl.jar
-usr/bin/tweek
-usr/bin/vrjconfig
-usr/bin/idl
-usr/bin/tweek-base.sh
+debian/tmp/usr/share/tweek-1.2
+debian/tmp/usr/bin/logkit-1.2.jar
+debian/tmp/usr/bin/idl.jar
+debian/tmp/usr/bin/tweek
+debian/tmp/usr/bin/vrjconfig
+debian/tmp/usr/bin/idl
+debian/tmp/usr/bin/tweek-base.sh
+debian/tmp/usr/bin/beans
