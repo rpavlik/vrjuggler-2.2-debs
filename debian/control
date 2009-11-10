@@ -72,7 +72,7 @@ Description: VR Juggler 2.2 Suite common files - development
  independent of device, computer platform, and VR system. VR Juggler may be run
  with any combination of immersive technologies and computational hardware.
 
-Package: libvpr-2.0
+Package: libvpr-2.0 (2.0.1.r21146)
 Section: libs
 Priority: optional
 Architecture: any
@@ -84,7 +84,7 @@ Description: VR Juggler Portable Runtime (VPR) for VR Juggler 2.2.x
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libvpr-2.0-dev
+Package: libvpr-2.0-dev (2.0.1.r21146)
 Section: libdevel
 Priority: extra
 Architecture: any
@@ -99,7 +99,7 @@ Description: Development files for VR Juggler Portable Runtime (VPR)
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libtweek-1.2
+Package: libtweek-1.2 (1.2.1.r21146)
 Section: libs
 Priority: optional
 Architecture: any
@@ -113,7 +113,7 @@ Description: Tweek API for distributed applications for VR Juggler 2.2.x
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libtweek-1.2-dev
+Package: libtweek-1.2-dev (1.2.1.r21146)
 Section: libdevel
 Priority: extra
 Architecture: any
@@ -129,7 +129,7 @@ Description: Development files for Tweek API
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libsonix-1.2
+Package: libsonix-1.2 (1.2.1.r21146)
 Section: libs
 Priority: optional
 Architecture: any
@@ -139,7 +139,7 @@ Description: Audio API wrapper for VR Juggler 2.2.x
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libsonix-1.2-dev
+Package: libsonix-1.2-dev (1.2.1.r21146)
 Section: libdevel
 Priority: extra
 Architecture: any
@@ -151,7 +151,7 @@ Description: Development files for Sonix audio API wrapper
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libgadgeteer-1.2
+Package: libgadgeteer-1.2 (1.2.1.r21146)
 Section: libs
 Priority: optional
 Architecture: any
@@ -163,7 +163,7 @@ Description: Input device manager for VR Juggler 2.2.x
  .
  This package is a part of the VR Juggler 2.2 suite.
 
-Package: libgadgeteer-1.2-dev
+Package: libgadgeteer-1.2-dev (1.2.1.r21146)
 Section: libdevel
 Priority: extra
 Architecture: any
