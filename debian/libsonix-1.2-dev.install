@@ -2,6 +2,6 @@ debian/tmp/usr/lib/flagpoll/sonix-1.2*
 debian/tmp/usr/include/sonix-1.2
 debian/tmp/usr/share/aclocal/sonix.m4
 debian/tmp/usr/lib/libsonix-1_2.a
-debian/tmp/usr/lib/i686/libsonix-1_2.a
-debian/tmp/usr/lib/i686/debug/libsonix-1_2.a
-debian/tmp/usr/lib/i686/opt/libsonix-1_2.a
+debian/tmp/usr/lib/*/libsonix-1_2.a
+debian/tmp/usr/lib/*/debug/libsonix-1_2.a
+debian/tmp/usr/lib/*/opt/libsonix-1_2.a

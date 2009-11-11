@@ -1,6 +1,6 @@
 debian/tmp/usr/lib/sonix-1.2
 debian/tmp/usr/share/sonix-1.2
 debian/tmp/usr/lib/libsonix-1_2.so
-debian/tmp/usr/lib/i686/libsonix-1_2.so
-debian/tmp/usr/lib/i686/debug/libsonix-1_2.so
-debian/tmp/usr/lib/i686/opt/libsonix-1_2.so
+debian/tmp/usr/lib/*/libsonix-1_2.so
+debian/tmp/usr/lib/*/debug/libsonix-1_2.so
+debian/tmp/usr/lib/*/opt/libsonix-1_2.so
