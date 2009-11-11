@@ -1,5 +1,5 @@
-debian/tmp/usr/lib/gadgeteer-1.2
-debian/tmp/usr/share/gadgeteer-1.2
-debian/tmp/usr/lib/*/libgadget-1_2.so
-debian/tmp/usr/lib/*/debug/libgadget-1_2.so
-debian/tmp/usr/lib/*/opt/libgadget-1_2.so
+usr/lib/gadgeteer-1.2
+usr/share/gadgeteer-1.2
+usr/lib/*/libgadget-1_2.so
+usr/lib/*/debug/libgadget-1_2.so
+usr/lib/*/opt/libgadget-1_2.so
