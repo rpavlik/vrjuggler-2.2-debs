@@ -1,3 +1,11 @@
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp4) jaunty; urgency=low
+
+  * Ensure lib directory is /usr/lib (first step in FTBFS on amd64)
+  * Exclude internal packages from dh_shlibdeps processing, and include
+    manual dependencies within this package
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Tue, 10 Nov 2009 20:06:08 -0600
+
 vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp3) jaunty; urgency=low
 
   * Remove incorrect install path from libvrj-2.2-dev.install

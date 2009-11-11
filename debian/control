@@ -44,8 +44,13 @@ Homepage: http://www.vrjuggler.org
 Package: vrjuggler-2.2
 Architecture: any
 Section: libs
-Depends: ${misc:Depends}, ${shlibs:Depends}, libvpr-2.0, libtweek-1.2,
-	libsonix-1.2, libgadgeteer-1.2, libvrj-2.2
+Depends: ${misc:Depends}, ${shlibs:Depends},
+	libvpr-2.0 (= ${binary:Version}),
+	libtweek-1.2 (= ${binary:Version}),
+	libsonix-1.2 (= ${binary:Version}),
+	libgadgeteer-1.2 (= ${binary:Version}),
+	libjccl-1.2 (= ${binary:Version}),
+	libvrj-2.2 (= ${binary:Version})
 Description: VR Juggler 2.2 Suite metapackage - VR Virtual Platform
  VR Juggler provides virtual reality (VR) software developers with a suite of
  application programming interfaces (APIs) that abstract, and hence simplify,
@@ -63,8 +68,14 @@ Architecture: any
 Section: libdevel
 Priority: extra
 Replaces: vrjuggler (<= 2.2.1+svnpatched-1)
-Depends: ${misc:Depends}, ${shlibs:Depends}, libvpr-2.0-dev, libtweek-1.2-dev,
-	libsonix-1.2-dev, libgadgeteer-1.2-dev, libvrj-2.2-dev, vrjuggler-2.2
+Depends: ${misc:Depends}, ${shlibs:Depends}, 
+	libvpr-2.0-dev (= ${binary:Version}),
+	libtweek-1.2-dev (= ${binary:Version}),
+	libsonix-1.2-dev (= ${binary:Version}),
+	libgadgeteer-1.2-dev (= ${binary:Version}),
+	libjccl-1.2-dev (= ${binary:Version}),
+	libvrj-2.2-dev (= ${binary:Version}),
+	vrjuggler-2.2 (= ${binary:Version})
 Description: VR Juggler 2.2 Suite development metapackage - VR Virtual Platform
  VR Juggler provides virtual reality (VR) software developers with a suite of
  application programming interfaces (APIs) that abstract, and hence simplify,
@@ -155,7 +166,9 @@ Package: libtweek-1.2
 Section: libs
 Priority: optional
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, vrjuggler-common-2.2
+Depends: ${misc:Depends}, ${shlibs:Depends},
+	libvpr-1.2 (= ${binary:Version}),
+	vrjuggler-common-2.2
 Description: Tweek API for distributed applications for VR Juggler 2.2.x
  The Tweek API provides a wrapper around CORBA for writing applications
  based on the distributed model/view/controller system. In the scope of
@@ -191,7 +204,9 @@ Package: libsonix-1.2
 Section: libs
 Priority: optional
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, vrjuggler-common-2.2
+Depends: ${misc:Depends}, ${shlibs:Depends},
+	libvpr-1.2 (= ${binary:Version}),
+	vrjuggler-common-2.2
 Description: Audio API wrapper for VR Juggler 2.2.x
  Sonix is a dynamically reconfigurable wrapper around audio APIs.
  .
@@ -219,7 +234,10 @@ Package: libgadgeteer-1.2
 Section: libs
 Priority: optional
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, vrjuggler-common-2.2
+Depends: ${misc:Depends}, ${shlibs:Depends},
+	libjccl-1.2 (= ${binary:Version}),
+	libvpr-1.2 (= ${binary:Version}),
+	vrjuggler-common-2.2
 Description: Input device manager for VR Juggler 2.2.x
  Gadgeteer is an extensible, highly configurable, cluster-ready input
  device management for use with virtual reality applications. Users can
@@ -251,7 +269,12 @@ Package: libvrj-2.2
 Section: libs
 Priority: optional
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}, vrjuggler-common-2.2
+Depends: ${misc:Depends}, ${shlibs:Depends},
+	libgadgeteer-1.2 (= ${binary:Version}),
+	libjccl-1.2 (= ${binary:Version}),
+	libsonix-1.2 (= ${binary:Version}),
+	libvpr-1.2 (= ${binary:Version}),
+	vrjuggler-common-2.2 (= ${binary:Version})
 Description: Core libraries for VR Juggler 2.2.x
  The libraries needed for running and developing VR applications using
  VR Juggler.
