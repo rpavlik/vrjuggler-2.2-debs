@@ -6,8 +6,12 @@ include /usr/share/cdbs/1/class/autotools.mk
 
 DEB_CONFIGURE_SCRIPT := $(CURDIR)/$(DEB_SRCDIR)/configure.pl
 DEB_CONFIGURE_NORMAL_ARGS := --prefix=/usr DESTDIR=$(DEB_DESTDIR)
-DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include --with-java-orb=JDK \
-							--with-gmtl=/usr --with-openal=/usr --with-audiere=/usr
+DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include \
+								--with-java-orb=JDK \
+								--with-gmtl=/usr \
+								--with-openal=/usr \
+								--with-audiere=/usr \
+								--with-vrpn=/usr
 
 FLAGS := -Wno-deprecated
 CXXFLAGS += $(FLAGS)

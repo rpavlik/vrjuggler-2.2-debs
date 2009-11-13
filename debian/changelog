@@ -3,8 +3,9 @@ vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp5) jaunty; urgency=low
   * Remove extraneous slash from prefix usage.
   * Increase debian/compat to 7 and update install files to remove
     debian/tmp/ prefix.
+  * Add support for VRPN gadgeteer driver.
 
- -- Ryan Pavlik <abiryan@ryand.net>  Wed, 11 Nov 2009 14:18:38 -0600
+ -- Ryan Pavlik <abiryan@ryand.net>  Fri, 13 Nov 2009 14:26:22 -0600
 
 vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp4) jaunty; urgency=low
 
