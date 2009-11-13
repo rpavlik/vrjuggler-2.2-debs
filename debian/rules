@@ -14,10 +14,11 @@ CXXFLAGS += $(FLAGS)
 CFLAGS += $(FLAGS)
 
 DEB_BUILDDIR := $(CURDIR)/debian/build/
+DEB_DESTDIR := $(CURDIR)/debian/tmp/
 
 DEB_MAKE_CLEAN_TARGET := distclean clean cleandepend clobber
-DEB_MAKE_BUILD_TARGET := release prefix=$(DEB_DESTDIR)usr  DESTDIR=$(DEB_DESTDIR)
-DEB_MAKE_INSTALL_TARGET :=
+DEB_MAKE_BUILD_TARGET := 
+DEB_MAKE_INSTALL_TARGET := release prefix=$(DEB_DESTDIR)usr  DESTDIR=$(DEB_DESTDIR)
 DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR) DESTDIR=$(DEB_DESTDIR)
 
 DEB_INSTALL_DOCS_ALL := $(CURDIR)/README.txt $(CURDIR)/README.html $(CURDIR)/README-WINDOWS.html
@@ -27,6 +28,8 @@ DEB_DH_SHLIBDEPS_ARGS := -- $(patsubst %,-x%,$(DEB_ALL_PACKAGES))
 makebuilddir/vrjuggler-2.2::
 	./autogen.sh
 	chmod a+x $(CURDIR)/debian/vrjuggler-env.sh
+	mkdir -p $(DEB_BUILDDIR)
+	mkdir -p $(DEB_DESTDIR)
 
 clean::
 	# Clean up editing detritus
@@ -34,7 +37,7 @@ clean::
 
 	# Clean up common build products
 	-rm -f config.log config.status Makefile
-	-rm -rf debian/build
+	-rm -rf $(DEB_BUILDDIR)
 
 	# Remove source build-generated files that make clean+friends misses.
 	find $(CURDIR) -name aclocal.m4 | xargs rm -f
