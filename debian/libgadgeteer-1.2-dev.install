@@ -1,6 +1,7 @@
 usr/lib/flagpoll/gadgeteer-1.2*
 usr/include/gadgeteer-1.2
 usr/share/aclocal/gadget.m4
+usr/lib/libgadget-1_2.a
 usr/lib/*/libgadget-1_2.a
 usr/lib/*/debug/libgadget-1_2.a
 usr/lib/*/opt/libgadget-1_2.a
