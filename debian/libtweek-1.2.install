@@ -6,3 +6,4 @@ usr/bin/vrjconfig
 usr/bin/idl
 usr/bin/tweek-base.sh
 usr/bin/beans
+# TODO: Package pytweek
