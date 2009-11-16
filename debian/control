@@ -67,7 +67,6 @@ Description: VR Juggler 2.2 Suite metapackage - VR Virtual Platform
 Package: vrjuggler-2.2-dev
 Architecture: any
 Section: libdevel
-Priority: extra
 Replaces: vrjuggler (<= 2.2.1+svnpatched-1)
 Depends: ${misc:Depends}, ${shlibs:Depends},
 	libvpr-2.0-dev (= ${binary:Version}),
@@ -92,7 +91,6 @@ Description: VR Juggler 2.2 Suite development metapackage - VR Virtual Platform
 Package: vrjuggler-common-2.2
 Architecture: all
 Section: libs
-Priority: optional
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: VR Juggler 2.2 Suite common files
  VR Juggler provides virtual reality (VR) software developers with a suite of
@@ -112,7 +110,6 @@ Description: VR Juggler 2.2 Suite common files
 Package: vrjuggler-common-2.2-dev
 Architecture: any
 Section: libdevel
-Priority: extra
 Depends: ${misc:Depends}, ${shlibs:Depends}, vrjuggler-common-2.2
 Description: VR Juggler 2.2 Suite common files - development
  VR Juggler provides virtual reality (VR) software developers with a suite of
@@ -132,7 +129,6 @@ Description: VR Juggler 2.2 Suite common files - development
 
 Package: libvpr-2.0
 Section: libs
-Priority: optional
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}, vrjuggler-common-2.2
 Description: VR Juggler Portable Runtime (VPR) for VR Juggler 2.2.x
@@ -146,7 +142,6 @@ Description: VR Juggler Portable Runtime (VPR) for VR Juggler 2.2.x
 
 Package: libvpr-2.0-dev
 Section: libdevel
-Priority: extra
 Architecture: any
 Depends: ${misc:Depends}, libvpr-2.0 (= ${binary:Version}), libcppdom-dev,
 	libboost-dev, libboost-signals-dev, libboost-filesystem-dev, e2fslibs-dev,
@@ -163,9 +158,36 @@ Description: Development files for VR Juggler Portable Runtime (VPR)
  For a full VR Juggler 2.2 runtime and development installation, install
  vrjuggler-2.2-dev
 
+Package: libjccl-1.2
+Section: libs
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends},
+	libvpr-1.2 (= ${binary:Version}),
+	vrjuggler-common-2.2
+Description: Configuration manager for VR Juggler 2.2.x
+ The JCCL C++ API provides a dynamic configuration system based on XML.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
+ .
+ For a full VR Juggler 2.2 runtime installation, install vrjuggler-2.2
+
+Package: libjccl-1.2-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}, libjccl-1.2 (= ${binary:Version}),
+	libvpr-2.0-dev, vrjuggler-common-2.2-dev
+Recommends: flagpoll
+Description: Development files for Jackal configuration API
+ The JCCL C++ API provides a dynamic configuration system based on XML.
+ .
+ This package is a part of the VR Juggler 2.2 suite, and provides headers
+ and other files required to compile applications using this component.
+ .
+ For a full VR Juggler 2.2 runtime and development installation, install
+ vrjuggler-2.2-dev
+
 Package: libtweek-1.2
 Section: libs
-Priority: optional
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
 	libvpr-1.2 (= ${binary:Version}),
@@ -183,7 +205,6 @@ Description: Tweek API for distributed applications for VR Juggler 2.2.x
 
 Package: libtweek-1.2-dev
 Section: libdevel
-Priority: extra
 Architecture: any
 Depends: ${misc:Depends}, libtweek-1.2 (= ${binary:Version}), libomniorb4-dev,
 	libcppdom-dev, vrjuggler-common-2.2-dev
@@ -203,7 +224,6 @@ Description: Development files for Tweek API
 
 Package: libsonix-1.2
 Section: libs
-Priority: optional
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
 	libvpr-1.2 (= ${binary:Version}),
@@ -217,7 +237,6 @@ Description: Audio API wrapper for VR Juggler 2.2.x
 
 Package: libsonix-1.2-dev
 Section: libdevel
-Priority: extra
 Architecture: any
 Depends: ${misc:Depends}, libsonix-1.2 (= ${binary:Version}), libgmtl-dev,
 	libcppdom-devl, libopenal-dev, libalut-dev, vrjuggler-common-2.2-dev
@@ -233,7 +252,6 @@ Description: Development files for Sonix audio API wrapper
 
 Package: libgadgeteer-1.2
 Section: libs
-Priority: optional
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
 	libjccl-1.2 (= ${binary:Version}),
@@ -250,7 +268,6 @@ Description: Input device manager for VR Juggler 2.2.x
 
 Package: libgadgeteer-1.2-dev
 Section: libdevel
-Priority: extra
 Architecture: any
 Depends: ${misc:Depends}, libgadgeteer-1.2 (= ${binary:Version}), libgmtl-dev,
 	libvpr-2.0-dev, libjccl-1.2-dev, vrjuggler-common-2.2-dev
@@ -268,7 +285,6 @@ Description: Development files for Gadgeteer input device manager
 
 Package: libvrj-2.2
 Section: libs
-Priority: optional
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
 	libgadgeteer-1.2 (= ${binary:Version}),
@@ -286,7 +302,6 @@ Description: Core libraries for VR Juggler 2.2.x
 
 Package: libvrj-2.2-dev
 Section: libdevel
-Priority: extra
 Architecture: any
 Depends: ${misc:Depends}, libvrj-2.2 (= ${binary:Version}), libgmtl-dev,
 	libvpr-2.0-dev, libjccl-1.2-dev, libgadgeteer-1.2-dev, libsonix-1.2-dev,
