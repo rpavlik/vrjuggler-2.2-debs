@@ -1,5 +1,8 @@
-usr/lib/flagpoll/tweek-1.2*
-usr/lib/flagpoll/tweek-python-1.2*
-usr/lib/flagpoll/tweek-java-1.2*
+usr/lib/flagpoll/tweek-*
 usr/include/tweek-1.2
 usr/share/aclocal/tweek.m4
+
+usr/lib/libtweek-1_2.a
+usr/lib/*/libtweek-1_2.a
+usr/lib/*/debug/libtweek-1_2.a
+usr/lib/*/opt/libtweek-1_2.a

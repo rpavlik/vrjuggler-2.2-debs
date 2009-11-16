@@ -1,4 +1,5 @@
 usr/share/jccl-1.2
+usr/lib/jccl-1.2
 usr/lib/libjccl-1_2.so
 usr/lib/*/libjccl-1_2.so
 usr/lib/*/debug/libjccl-1_2.so
