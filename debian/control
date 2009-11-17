@@ -33,6 +33,7 @@ Build-Depends: autoconf, automake, cdbs (>=0.4.49), debhelper (>= 7),
 	openjdk-6-jdk,
 	portaudio19-dev,
 	pyqt-tools,
+	python-all-dev,
 	python-omniorb,
 	python-omniorb-omg,
 	uuid-dev,
@@ -52,6 +53,7 @@ Depends: ${misc:Depends}, ${shlibs:Depends},
 	libsonix-1.2 (= ${binary:Version}),
 	libgadgeteer-1.2 (= ${binary:Version}),
 	libjccl-1.2 (= ${binary:Version}),
+	libjccl-rtrc-1.2 (= ${binary:Version}),
 	libvrj-2.2 (= ${binary:Version})
 Description: VR Juggler 2.2 Suite metapackage - VR Virtual Platform
  VR Juggler provides virtual reality (VR) software developers with a suite of
@@ -186,6 +188,20 @@ Description: Development files for Jackal configuration API
  .
  For a full VR Juggler 2.2 runtime and development installation, install
  vrjuggler-2.2-dev
+ 
+Package: libjccl-rtrc-1.2
+Section: libs
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends},
+	libjccl-1.2,
+	libtweek-1.2,
+	vrjuggler-common-2.2
+Description: Remote Run-Time Reconfiguration Plug-in for Jackal
+ The JCCL C++ API provides a dynamic configuration system based on XML.
+ .
+ This package is a part of the VR Juggler 2.2 suite.
+ .
+ For a full VR Juggler 2.2 runtime installation, install vrjuggler-2.2
 
 Package: libtweek-1.2
 Section: libs
