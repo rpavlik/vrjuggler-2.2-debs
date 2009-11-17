@@ -27,7 +27,7 @@ DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR) DESTDIR=$(DEB_DESTDIR)
 
 DEB_INSTALL_DOCS_ALL := $(CURDIR)/README.txt $(CURDIR)/README.html $(CURDIR)/README-WINDOWS.html
 
-DEB_DH_SHLIBDEPS_ARGS := -- $(patsubst %,-x%,$(DEB_ALL_PACKAGES))
+#DEB_DH_SHLIBDEPS_ARGS := -- $(patsubst %,-x%,$(DEB_ALL_PACKAGES))
 
 makebuilddir/vrjuggler-2.2::
 	./autogen.sh
