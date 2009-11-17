@@ -1,5 +1,19 @@
 #!/usr/bin/make -f
 
+binary/libjccl-1.2-dev:: binary/libjccl-1.2
+binary/libtweek-1.2-dev:: binary/libtweek-1.2
+binary/libvpr-2.0-dev:: binary/libvpr-2.0
+binary/libsonix-1.2-dev:: binary/libsonix-1.2
+binary/libvrj-2.2-dev:: binary/libvrj-2.2
+binary/libgadgeteer-1.2-dev:: binary/libgadgeteer-1.2
+
+binary/libvrj-2.2:: binary/libgadgeteer-1.2 binary/libsonix-1.2 binary/libvpr-2.0 binary/libjccl-1.2
+binary/libgadgeteer-1.2:: binary/libvpr-2.0 binary/libjccl-1.2
+binary/libjccl-1.2:: binary/libvpr-2.0
+binary/libjccl-rtrc-1.2:: binary/libjccl-1.2 binary/libtweek-1.2
+binary/libsonix-1.2:: binary/libvpr-2.0
+binary/libtweek-1.2:: binary/libvpr-2.0
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 #include /usr/share/cdbs/1/rules/patchsys-quilt.mk
@@ -27,7 +41,7 @@ DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR) DESTDIR=$(DEB_DESTDIR)
 
 DEB_INSTALL_DOCS_ALL := $(CURDIR)/README.txt $(CURDIR)/README.html $(CURDIR)/README-WINDOWS.html
 
-#DEB_DH_SHLIBDEPS_ARGS := -- $(patsubst %,-x%,$(DEB_ALL_PACKAGES))
+DEB_DH_SHLIBDEPS_ARGS := -- $(patsubst %,-x%,$(DEB_ALL_PACKAGES))
 
 makebuilddir/vrjuggler-2.2::
 	./autogen.sh
@@ -37,7 +51,9 @@ makebuilddir/vrjuggler-2.2::
 
 clean::
 	# Clean up editing detritus
-	-rm -f debian/*~ debian/._* .DS_Store
+	find $(CURDIR) -name *\~ | xargs rm -rf
+	find $(CURDIR) -name ._* | xargs rm -rf
+	find $(CURDIR) -name .DS_Store | xargs rm -rf
 
 	# Clean up common build products
 	-rm -f config.log config.status Makefile
