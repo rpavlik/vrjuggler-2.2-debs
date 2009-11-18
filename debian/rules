@@ -7,12 +7,10 @@ binary/libsonix-1.2-dev:: binary/libsonix-1.2
 binary/libvrj-2.2-dev:: binary/libvrj-2.2
 binary/libgadgeteer-1.2-dev:: binary/libgadgeteer-1.2
 
-binary/libvrj-2.2:: binary/libgadgeteer-1.2 binary/libsonix-1.2 binary/libvpr-2.0 binary/libjccl-1.2
-binary/libgadgeteer-1.2:: binary/libvpr-2.0 binary/libjccl-1.2
-binary/libjccl-1.2:: binary/libvpr-2.0
-binary/libjccl-rtrc-1.2:: binary/libjccl-1.2 binary/libtweek-1.2
-binary/libsonix-1.2:: binary/libvpr-2.0
-binary/libtweek-1.2:: binary/libvpr-2.0
+binary/libgadgeteer-1.2 binary/libjccl-1.2 binary/libsonix-1.2 binary/libtweek-1.2:: binary/libvpr-2.0
+binary/libgadgeteer-1.2 binary/libjccl-rtrc-1.2:: binary/libjccl-1.2
+binary/libjccl-rtrc-1.2:: binary/libtweek-1.2
+binary/libvrj-2.2:: binary/libgadgeteer-1.2 binary/libsonix-1.2
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
