@@ -1,11 +1,18 @@
-vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp5+karmic1) karmic; urgency=low
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp6+karmic1) karmic; urgency=low
 
   * Port to karmic.
   * Use autoconf 2.59 since 2.64 breaks with an Objective C-related error.
   * Use automake 1.9 for compatibility with autoconf 2.59.
   * Adjust rules to use specific autotools versions.
 
- -- Ryan Pavlik <abiryan@ryand.net>  Wed, 18 Nov 2009 14:15:07 -0600
+ -- Ryan Pavlik <abiryan@ryand.net>  Wed, 18 Nov 2009 16:13:56 -0600
+
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp6) jaunty; urgency=low
+
+  * Fix package name dependencies on vpr.
+  * Clean up some lintian warnings about versions.
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Wed, 18 Nov 2009 16:13:56 -0600
 
 vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp5) jaunty; urgency=low
 
