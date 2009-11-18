@@ -1,5 +1,5 @@
-debian/tmp/usr/share/jccl-1.2
-debian/tmp/usr/lib/libjccl-1_2.so
-debian/tmp/usr/lib/i686/libjccl-1_2.so
-debian/tmp/usr/lib/i686/debug/libjccl-1_2.so
-debian/tmp/usr/lib/i686/opt/libjccl-1_2.so
+usr/share/jccl-1.2
+usr/lib/libjccl-1_2.so
+usr/lib/*/libjccl-1_2.so
+usr/lib/*/debug/libjccl-1_2.so
+usr/lib/*/opt/libjccl-1_2.so

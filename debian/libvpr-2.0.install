@@ -1,5 +1,6 @@
-debian/tmp/usr/share/vpr-2.0
-debian/tmp/usr/lib/i686/libvpr-2_0.so
-debian/tmp/usr/lib/libvpr-2_0.so
-debian/tmp/usr/lib/i686/debug/libvpr-2_0.so
-debian/tmp/usr/lib/i686/opt/libvpr-2_0.so
+usr/share/vpr-2.0
+
+usr/lib/libvpr-2_0.so
+usr/lib/*/libvpr-2_0.so
+usr/lib/*/debug/libvpr-2_0.so
+usr/lib/*/opt/libvpr-2_0.so

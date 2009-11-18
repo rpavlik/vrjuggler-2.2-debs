@@ -1,38 +1,62 @@
 #!/usr/bin/make -f
 
+binary/libjccl-1.2-dev:: binary/libjccl-1.2
+binary/libtweek-1.2-dev:: binary/libtweek-1.2
+binary/libvpr-2.0-dev:: binary/libvpr-2.0
+binary/libsonix-1.2-dev:: binary/libsonix-1.2
+binary/libvrj-2.2-dev:: binary/libvrj-2.2
+binary/libgadgeteer-1.2-dev:: binary/libgadgeteer-1.2
+
+binary/libgadgeteer-1.2 binary/libjccl-1.2 binary/libsonix-1.2 binary/libtweek-1.2:: binary/libvpr-2.0
+binary/libgadgeteer-1.2 binary/libjccl-rtrc-1.2:: binary/libjccl-1.2
+binary/libjccl-rtrc-1.2:: binary/libtweek-1.2
+binary/libvrj-2.2:: binary/libgadgeteer-1.2 binary/libsonix-1.2
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 #include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include debian/cdbs/1/rules/buildinfo.mk
 
 DEB_CONFIGURE_SCRIPT := $(CURDIR)/$(DEB_SRCDIR)/configure.pl
 DEB_CONFIGURE_NORMAL_ARGS := --prefix=/usr DESTDIR=$(DEB_DESTDIR)
-DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include --with-java-orb=JDK \
-							--with-gmtl=/usr --with-openal=/usr --with-audiere=/usr
+DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include \
+								--with-java-orb=JDK \
+								--with-gmtl=/usr \
+								--with-openal=/usr \
+								--with-audiere=/usr \
+								--with-vrpn=/usr
 
 FLAGS := -Wno-deprecated
 CXXFLAGS += $(FLAGS)
 CFLAGS += $(FLAGS)
 
 DEB_BUILDDIR := $(CURDIR)/debian/build/
+DEB_DESTDIR := $(CURDIR)/debian/tmp/
 
 DEB_MAKE_CLEAN_TARGET := distclean clean cleandepend clobber
-DEB_MAKE_BUILD_TARGET :=
-DEB_MAKE_INSTALL_TARGET  := release prefix=$(DEB_DESTDIR)/usr  DESTDIR=$(DEB_DESTDIR)
+DEB_MAKE_BUILD_TARGET := 
+DEB_MAKE_INSTALL_TARGET := release prefix=$(DEB_DESTDIR)usr  DESTDIR=$(DEB_DESTDIR)
 DEB_MAKE_ENVVARS += VJ_BASE_DIR=$(DEB_DESTDIR) DESTDIR=$(DEB_DESTDIR)
 
 DEB_INSTALL_DOCS_ALL := $(CURDIR)/README.txt $(CURDIR)/README.html $(CURDIR)/README-WINDOWS.html
 
+DEB_DH_SHLIBDEPS_ARGS := -- $(patsubst %,-x%,$(DEB_ALL_PACKAGES))
+
 makebuilddir/vrjuggler-2.2::
 	./autogen.sh
 	chmod a+x $(CURDIR)/debian/vrjuggler-env.sh
+	mkdir -p $(DEB_BUILDDIR)
+	mkdir -p $(DEB_DESTDIR)
 
 clean::
 	# Clean up editing detritus
-	-rm -f debian/*~ debian/._* .DS_Store
+	find $(CURDIR) -name *\~ | xargs rm -rf
+	find $(CURDIR) -name ._* | xargs rm -rf
+	find $(CURDIR) -name .DS_Store | xargs rm -rf
 
 	# Clean up common build products
 	-rm -f config.log config.status Makefile
-	-rm -rf debian/build
+	-rm -rf $(DEB_BUILDDIR)
 
 	# Remove source build-generated files that make clean+friends misses.
 	find $(CURDIR) -name aclocal.m4 | xargs rm -f
