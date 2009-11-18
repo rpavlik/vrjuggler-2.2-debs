@@ -173,7 +173,7 @@ Package: libjccl-1.2
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
-	libvpr-1.2 (= ${binary:Version}),
+	libvpr-1.2,
 	vrjuggler-common-2.2
 Description: Configuration manager for VR Juggler 2.2.x
  The JCCL C++ API provides a dynamic configuration system based on XML.
@@ -217,7 +217,7 @@ Package: libtweek-1.2
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
-	libvpr-1.2 (= ${binary:Version}),
+	libvpr-1.2,
 	vrjuggler-common-2.2
 Description: Tweek API for distributed applications for VR Juggler 2.2.x
  The Tweek API provides a wrapper around CORBA for writing applications
@@ -234,7 +234,7 @@ Package: libtweek-1.2-dev
 Section: libdevel
 Architecture: any
 Depends: ${misc:Depends},
-	libtweek-1.2 (= ${binary:Version}),
+	libtweek-1.2,
 	vrjuggler-common-2.2-dev
 Recommends: flagpoll,
 	libcppdom-dev,
