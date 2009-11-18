@@ -1,3 +1,36 @@
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp5+karmic1) karmic; urgency=low
+
+  * Port to karmic.
+  * Use autoconf 2.59 since 2.64 breaks with an Objective C-related error.
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Wed, 18 Nov 2009 11:08:59 -0600
+
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp5) jaunty; urgency=low
+
+  * Remove extraneous slash from prefix usage.
+  * Increase debian/compat to 7 and update install files to remove
+    debian/tmp/ prefix.
+  * Add support for VRPN gadgeteer driver.
+  * Add buildinfo usage
+  * Fix installation.
+  * Add libjccl-rtrc-1.2 package
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Wed, 18 Nov 2009 11:08:59 -0600
+
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp4) jaunty; urgency=low
+
+  * Replace hardcoded i686 in install files with * (partial fix FTBFS on amd64)
+  * Exclude internal packages from dh_shlibdeps processing, and include
+    manual dependencies within this package
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Wed, 11 Nov 2009 13:00:48 -0600
+
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp3) jaunty; urgency=low
+
+  * Remove incorrect install path from libvrj-2.2-dev.install
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Tue, 10 Nov 2009 17:12:21 -0600
+
 vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp2~karmic1) karmic; urgency=low
 
   * Port to karmic.
