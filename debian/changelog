@@ -1,3 +1,10 @@
+vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp6) jaunty; urgency=low
+
+  * Fix package name dependencies on vpr.
+  * Clean up some lintian warnings about versions.
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Wed, 18 Nov 2009 16:13:56 -0600
+
 vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp5) jaunty; urgency=low
 
   * Remove extraneous slash from prefix usage.

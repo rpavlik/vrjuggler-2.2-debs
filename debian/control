@@ -172,7 +172,7 @@ Package: libjccl-1.2
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
-	libvpr-1.2,
+	libvpr-2.0,
 	vrjuggler-common-2.2
 Description: Configuration manager for VR Juggler 2.2.x
  The JCCL C++ API provides a dynamic configuration system based on XML.
@@ -216,7 +216,7 @@ Package: libtweek-1.2
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
-	libvpr-1.2,
+	libvpr-2.0,
 	vrjuggler-common-2.2
 Description: Tweek API for distributed applications for VR Juggler 2.2.x
  The Tweek API provides a wrapper around CORBA for writing applications
@@ -233,7 +233,7 @@ Package: libtweek-1.2-dev
 Section: libdevel
 Architecture: any
 Depends: ${misc:Depends},
-	libtweek-1.2,
+	libtweek-1.2 (= ${binary:Version}),
 	vrjuggler-common-2.2-dev
 Recommends: flagpoll,
 	libcppdom-dev,
@@ -255,7 +255,7 @@ Package: libsonix-1.2
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
-	libvpr-1.2,
+	libvpr-2.0,
 	vrjuggler-common-2.2
 Description: Audio API wrapper for VR Juggler 2.2.x
  Sonix is a dynamically reconfigurable wrapper around audio APIs.
@@ -289,7 +289,7 @@ Section: libs
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
 	libjccl-1.2,
-	libvpr-1.2,
+	libvpr-2.0,
 	vrjuggler-common-2.2
 Description: Input device manager for VR Juggler 2.2.x
  Gadgeteer is an extensible, highly configurable, cluster-ready input
@@ -328,7 +328,7 @@ Depends: ${misc:Depends}, ${shlibs:Depends},
 	libgadgeteer-1.2,
 	libjccl-1.2,
 	libsonix-1.2,
-	libvpr-1.2,
+	libvpr-2.0,
 	vrjuggler-common-2.2
 Description: Core libraries for VR Juggler 2.2.x
  The libraries needed for running and developing VR applications using
