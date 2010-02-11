@@ -1,3 +1,9 @@
+vrjuggler-2.2 (2.2.1.21199-0ubuntu1~rp2~jaunty1) jaunty; urgency=low
+
+  * Attempt to force libdir to be /usr/lib instead of /usr/lib64
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Thu, 11 Feb 2010 17:31:32 -0600
+
 vrjuggler-2.2 (2.2.1.21199-0ubuntu1~rp1~jaunty1) jaunty; urgency=low
 
   * New upstream svn.
