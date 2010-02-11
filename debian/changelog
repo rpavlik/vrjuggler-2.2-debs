@@ -1,3 +1,10 @@
+vrjuggler-2.2 (2.2.1.21199-0ubuntu1~rp1~jaunty1) jaunty; urgency=low
+
+  * New upstream svn.
+  * Try using default autoconf/automake given the upstream changes.
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Thu, 11 Feb 2010 16:51:44 -0600
+
 vrjuggler-2.2 (2.2.1.21146-0ubuntu1~rp6) jaunty; urgency=low
 
   * Fix package name dependencies on vpr.

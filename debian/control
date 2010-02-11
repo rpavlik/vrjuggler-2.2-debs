@@ -2,7 +2,10 @@ Source: vrjuggler-2.2
 Maintainer: Ryan Pavlik <abiryan@ryand.net>
 Section: libs
 Priority: optional
-Build-Depends: autoconf2.59, automake1.9, cdbs (>=0.4.49), debhelper (>= 7),
+Build-Depends: autoconf,
+	automake,
+	cdbs (>=0.4.49),
+	debhelper (>= 7),
 	doozer,
 	doxygen,
 	dh-buildinfo,
