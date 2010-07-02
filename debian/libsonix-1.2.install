@@ -2,5 +2,4 @@ usr/share/sonix-1.2
 usr/lib/sonix-1.2
 usr/lib/libsonix-1_2.so
 usr/lib/*/libsonix-1_2.so
-usr/lib/*/debug/libsonix-1_2.so
 usr/lib/*/opt/libsonix-1_2.so
