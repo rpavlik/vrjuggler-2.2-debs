@@ -1,8 +1,11 @@
 vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~jaunty1) jaunty; urgency=low
 
-  * Upgrade to new upstream release
+  * Upgrade to new upstream release.
+  * Add patch to fix running vrjconfig - now explicitly uses bash.
+  * Change the default JDK_HOME value for tweek apps like vrjconfig.
+  * Update boost dependencies.
 
- -- Ryan Pavlik <abiryan@ryand.net>  Fri, 02 Jul 2010 12:24:32 -0500
+ -- Ryan Pavlik <abiryan@ryand.net>  Fri, 02 Jul 2010 12:37:26 -0500
 
 vrjuggler-2.2 (2.2.1.21199-0ubuntu1~rp2~jaunty1) jaunty; urgency=low
 
