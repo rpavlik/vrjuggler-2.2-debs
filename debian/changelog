@@ -1,3 +1,9 @@
+vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~jaunty1) jaunty; urgency=low
+
+  * Upgrade to new upstream release
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Fri, 02 Jul 2010 12:24:32 -0500
+
 vrjuggler-2.2 (2.2.1.21199-0ubuntu1~rp2~jaunty1) jaunty; urgency=low
 
   * Attempt to force libdir to be /usr/lib instead of /usr/lib64
