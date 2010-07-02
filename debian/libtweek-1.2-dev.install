@@ -4,5 +4,4 @@ usr/share/aclocal/tweek.m4
 
 usr/lib/libtweek-1_2.a
 usr/lib/*/libtweek-1_2.a
-usr/lib/*/debug/libtweek-1_2.a
 usr/lib/*/opt/libtweek-1_2.a

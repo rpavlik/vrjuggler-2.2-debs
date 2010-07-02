@@ -2,5 +2,4 @@ usr/share/vpr-2.0
 
 usr/lib/libvpr-2_0.so
 usr/lib/*/libvpr-2_0.so
-usr/lib/*/debug/libvpr-2_0.so
 usr/lib/*/opt/libvpr-2_0.so

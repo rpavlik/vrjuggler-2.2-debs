@@ -4,5 +4,4 @@ usr/include/jccl-1.2
 
 usr/lib/libjccl-1_2.a
 usr/lib/*/libjccl-1_2.a
-usr/lib/*/debug/libjccl-1_2.a
 usr/lib/*/opt/libjccl-1_2.a

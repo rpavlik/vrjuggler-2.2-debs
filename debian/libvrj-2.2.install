@@ -4,7 +4,5 @@ usr/lib/libvrj-2_2.so
 usr/lib/libvrj_ogl-2_2.so
 usr/lib/*/libvrj-2_2.so
 usr/lib/*/libvrj_ogl-2_2.so
-usr/lib/*/debug/libvrj-2_2.so
-usr/lib/*/debug/libvrj_ogl-2_2.so
 usr/lib/*/opt/libvrj-2_2.so
 usr/lib/*/opt/libvrj_ogl-2_2.so

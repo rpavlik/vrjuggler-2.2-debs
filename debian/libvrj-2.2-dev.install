@@ -4,9 +4,6 @@ usr/lib/libvrj_ogl-2_2.a
 usr/lib/*/libvrj-2_2.a
 usr/lib/*/libvrj_ogl-2_2.a
 
-usr/lib/*/debug/libvrj-2_2.a
-usr/lib/*/debug/libvrj_ogl-2_2.a
-
 usr/lib/*/opt/libvrj-2_2.a
 usr/lib/*/opt/libvrj_ogl-2_2.a
 
