@@ -3,8 +3,9 @@ vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~karmic1) karmic; urgency=low
   * Port to karmic.
   * Did not add explicit build dep on boost-system this time:
     boost-filesystem should pull it in.
+  * Still use autoconf 2.59 and automake 1.9 - doesn't seem to build otherwise
 
- -- Ryan Pavlik <abiryan@ryand.net>  Fri, 02 Jul 2010 18:15:42 -0500
+ -- Ryan Pavlik <abiryan@ryand.net>  Fri, 02 Jul 2010 18:40:15 -0500
 
 vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~jaunty1) jaunty; urgency=low
 
