@@ -1,0 +1,20 @@
+diff --git a/modules/tweek/java/tweek.sh.in b/modules/tweek/java/tweek.sh.in
+index 99476f1..c88c8aa 100755
+--- a/modules/tweek/java/tweek.sh.in
++++ b/modules/tweek/java/tweek.sh.in
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!/bin/bash
+ 
+ # ************** <auto-copyright.pl BEGIN do not edit this line> **************
+ #
+diff --git a/modules/vrjuggler/vrjconfig/vrjconfig.sh.in b/modules/vrjuggler/vrjconfig/vrjconfig.sh.in
+index a79a850..267a48a 100755
+--- a/modules/vrjuggler/vrjconfig/vrjconfig.sh.in
++++ b/modules/vrjuggler/vrjconfig/vrjconfig.sh.in
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!/bin/bash
+ 
+ # ************** <auto-copyright.pl BEGIN do not edit this line> **************
+ #

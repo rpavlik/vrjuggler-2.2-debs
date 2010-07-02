@@ -1,0 +1,18 @@
+diff --git a/modules/tweek/java/tweek-base.sh.in b/modules/tweek/java/tweek-base.sh.in
+index 7040b72..43a4bbf 100644
+--- a/modules/tweek/java/tweek-base.sh.in
++++ b/modules/tweek/java/tweek-base.sh.in
+@@ -34,10 +34,10 @@ fi
+ #   exit 1
+ #fi
+ 
+-# If the environment variable JDK_HOME is not set, default it to /usr/java.
++# If the environment variable JDK_HOME is not set, default it to /usr.
+ if test "x$JDK_HOME" = "x" ; then
+-   echo "WARNING: Setting JDK_HOME environment variable to /usr/java"
+-   JDK_HOME='/usr/java' ; export JDK_HOME
++   echo "WARNING: Setting JDK_HOME environment variable to /usr"
++   JDK_HOME='/usr' ; export JDK_HOME
+ fi
+ 
+ # Make sure that $JDK_HOME/bin/java exists and is executable.  If it is not,
