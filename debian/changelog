@@ -1,3 +1,11 @@
+vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~karmic1) karmic; urgency=low
+
+  * Port to karmic.
+  * Did not add explicit build dep on boost-system this time:
+    boost-filesystem should pull it in.
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Fri, 02 Jul 2010 18:15:42 -0500
+
 vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~jaunty1) jaunty; urgency=low
 
   * Upgrade to new upstream release.
