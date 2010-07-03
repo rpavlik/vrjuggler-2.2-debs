@@ -1,0 +1,13 @@
+diff --git a/dpp/config/abi.m4 b/dpp/config/abi.m4
+index 130aa89..72c2f4d 100644
+--- a/dpp/config/abi.m4
++++ b/dpp/config/abi.m4
+@@ -190,7 +190,7 @@ AC_DEFUN([DPP_ABI_SETUP],
+          DPP_ABI_CFG([ELF], [i386], , [-m32])
+          ;;
+       xELF_x86_64)
+-         DPP_ABI_CFG([ELF], [x86_64], [64], [-m64])
++         DPP_ABI_CFG([ELF], [x86_64], , [-m64])
+          ;;
+       xWIN32_i386)
+          DPP_ABI_CFG([WIN32])
