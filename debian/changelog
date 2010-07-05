@@ -1,3 +1,10 @@
+vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~lucid1) lucid; urgency=low
+
+  * Port to lucid
+  * Add patch to detect debian and disable using libbitsuf
+
+ -- Ryan Pavlik <rpavlik@lucid32vm>  Mon, 05 Jul 2010 16:07:19 -0500
+
 vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~karmic1) karmic; urgency=low
 
   * Port to karmic.
