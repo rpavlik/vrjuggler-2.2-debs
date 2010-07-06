@@ -1,12 +1,3 @@
-usr/lib/libvrj-2_2.a
-usr/lib/libvrj_ogl-2_2.a
-
-usr/lib/*/libvrj-2_2.a
-usr/lib/*/libvrj_ogl-2_2.a
-
-usr/lib/*/opt/libvrj-2_2.a
-usr/lib/*/opt/libvrj_ogl-2_2.a
-
 usr/lib/flagpoll/vrjuggler-2.2*
 usr/lib/flagpoll/vrjuggler-opengl-2.2*
 

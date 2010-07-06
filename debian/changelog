@@ -5,8 +5,9 @@ vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~karmic1) karmic; urgency=low
     boost-filesystem should pull it in.
   * Still use autoconf 2.59 and automake 1.9 - doesn't seem to build otherwise
   * Add patch to detect debian and disable using libbitsuf
+  * Don't build or install static libraries.
 
- -- Ryan Pavlik <abiryan@ryand.net>  Fri, 02 Jul 2010 19:53:50 -0500
+ -- Ryan Pavlik <abiryan@ryand.net>  Tue, 06 Jul 2010 13:29:02 -0500
 
 vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~jaunty1) jaunty; urgency=low
 
