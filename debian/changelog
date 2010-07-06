@@ -1,17 +1,10 @@
-vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~lucid1) lucid; urgency=low
-
-  * Port to lucid
-  * Add patch to detect debian and disable using libbitsuf
-
- -- Ryan Pavlik <rpavlik@lucid32vm>  Mon, 05 Jul 2010 16:07:19 -0500
-
 vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~karmic1) karmic; urgency=low
 
   * Port to karmic.
   * Did not add explicit build dep on boost-system this time:
     boost-filesystem should pull it in.
   * Still use autoconf 2.59 and automake 1.9 - doesn't seem to build otherwise
-  * Add patch 03_dont_build_to_lib64.diff
+  * Add patch to detect debian and disable using libbitsuf
 
  -- Ryan Pavlik <abiryan@ryand.net>  Fri, 02 Jul 2010 19:53:50 -0500
 
