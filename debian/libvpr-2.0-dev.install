@@ -3,7 +3,3 @@ usr/lib/flagpoll/vpr-2.0*
 usr/include/vpr-2.0
 usr/share/aclocal/vpr.m4
 usr/share/aclocal/vrj-helpers.m4
-
-usr/lib/libvpr-2_0.a
-usr/lib/*/libvpr-2_0.a
-usr/lib/*/opt/libvpr-2_0.a
