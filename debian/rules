@@ -18,7 +18,7 @@ include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include debian/cdbs/1/rules/buildinfo.mk
 
-AUTOTOOLS_ENV := AUTOCONF=autoconf2.59 AUTOHEADER=autoheader2.59 ACLOCAL=aclocal-1.9
+#AUTOTOOLS_ENV := AUTOCONF=autoconf2.59 AUTOHEADER=autoheader2.59 ACLOCAL=aclocal-1.9
 
 DEB_CONFIGURE_SCRIPT_ENV += $(AUTOTOOLS_ENV)
 DEB_CONFIGURE_SCRIPT := $(CURDIR)/$(DEB_SRCDIR)/configure.pl
