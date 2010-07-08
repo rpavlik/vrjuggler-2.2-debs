@@ -1,4 +1,4 @@
-# VR Juggler is (C) Copyright 1998-2007 by Iowa State University
+# VR Juggler is (C) Copyright 1998-2010 by Iowa State University
 #
 # Original Authors:
 #   Allen Bierbaum, Christopher Just,
@@ -20,7 +20,7 @@
 # Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA 02110-1301, USA.
 
-The Debian packaging is (C) 2009 Ryan Pavlik <abiryan@ryand.net> and is licensed under the LGPL 2+.
+The Debian packaging is (C) 2009-2010 Ryan Pavlik <abiryan@ryand.net> and is licensed under the LGPL 2+.
 
  On Debian systems, the complete text of the GNU Library General
  Public License (LGPL, formerly named GNU Lesser General Public
