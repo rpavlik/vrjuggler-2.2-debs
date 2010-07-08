@@ -151,12 +151,12 @@ Section: libdevel
 Architecture: any
 Depends: ${misc:Depends},
 	libvpr-2.0 (= ${binary:Version}),
+	libboost1.40-dev | libboost1.38-dev | libboost1.37-dev | libboost-dev,
+	libboost-filesystem1.40-dev | libboost-filesystem1.38-dev | libboost-filesystem1.37-dev | libboost-filesystem-dev,
+	libboost-signals1.40-dev | libboost-signals1.38-dev | libboost-signals1.37-dev | libboost-signals-dev,
 	vrjuggler-common-2.2-dev
 Recommends: flagpoll,
 	e2fslibs-dev,
-	libboost-dev,
-	libboost-filesystem-dev,
-	libboost-signals-dev,
 	libcppdom-dev,
 	uuid-dev
 Description: Development files for VR Juggler Portable Runtime (VPR)
@@ -271,9 +271,9 @@ Section: libdevel
 Architecture: any
 Depends: ${misc:Depends},
 	libsonix-1.2 (= ${binary:Version}),
+	gmtl,
 	vrjuggler-common-2.2-dev
 Recommends: flagpoll,
-	gmtl,
 	libalut-dev,
 	libcppdom-dev,
 	libopenal-dev
@@ -307,9 +307,9 @@ Section: libdevel
 Architecture: any
 Depends: ${misc:Depends},
 	libgadgeteer-1.2 (= ${binary:Version}),
+	gmtl,
 	vrjuggler-common-2.2-dev
 Recommends: flagpoll,
-	gmtl,
 	libjccl-1.2-dev,
 	libvpr-2.0-dev
 Description: Development files for Gadgeteer input device manager
@@ -347,7 +347,6 @@ Depends: ${misc:Depends},
 	libvrj-2.2 (= ${binary:Version}),
 	vrjuggler-common-2.2-dev
 Recommends: flagpoll,
-	gmtl,
 	libgadgeteer-1.2-dev,
 	libjccl-1.2-dev,
 	libsonix-1.2-dev,
