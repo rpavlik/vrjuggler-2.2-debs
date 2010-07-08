@@ -2,11 +2,11 @@ This package's original source was created by exporting a copy of the
 VR Juggler upstream SVN, in the 2.2 release branch.  As of 20091110,
 this command will produce a comparable source directory:
 
-  svn export https://realityforge.vrsource.org/svn/vrjuggler/juggler/branches/2.2 vrjuggler-2.2
+  svn export http://vrjuggler.googlecode.com/svn/juggler/branches/2.2 vrjuggler-2.2
 
-A web view of the repository and changes is available at this site:
+You can view a web version of the repository here, to verify this:
 
-  http://developer.vrjuggler.org/browser/juggler/branches/2.2
+  http://code.google.com/p/vrjuggler/source/browse/
 
 Note that the entire vrjuggler.org web site is inaccessible to
 Iowa State University users whose systems are located behind the NAT
@@ -15,15 +15,3 @@ problem at Priority 5 (the current commercial entity behind VR Juggler)
 and has been reported to them - you might try reminding them in hopes of
 solving this bothersome problem.
 
-
-
-The upstream developers have begun moving to Google Code, but have not
-fully migrated all the SVN code and history to this repository.  When
-this migration is complete, a command similar to the following will be
-correct (verify before use):
-
-  svn export http://vrjuggler.googlecode.com/svn/branches/2.2 vrjuggler-2.2
-
-You can view a web version of the repository here, to verify this:
-
-  http://code.google.com/p/vrjuggler/source/browse/
