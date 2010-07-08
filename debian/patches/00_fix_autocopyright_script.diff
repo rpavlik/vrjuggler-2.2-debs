@@ -1,41 +1,49 @@
 diff --git a/scripts/auto-copyright/Makefile b/scripts/auto-copyright/Makefile
-index 5464810..7495a1c 100644
+index 5464810..c607b93 100644
 --- a/scripts/auto-copyright/Makefile
 +++ b/scripts/auto-copyright/Makefile
-@@ -11,14 +11,14 @@ usage:
+@@ -1,6 +1,7 @@
+ 
+ CPP_EXTS = java,h.in,h,cxx,cpp
+ HASH_EXTS = in,pl,sh
++HASH_EXCLUSIONS = h.in
+ 
+ default: usage
+ usage:
+@@ -11,14 +12,14 @@ usage:
  
  # Juggler Umbrella
  all:
 -	auto-copyright.pl -d ../../modules -e $(CPP_EXTS) -c data/vrj-copyright.c.txt  -t config/vrj-copyright-replace.c.pl -a
 -	auto-copyright.pl -d ../../modules -e $(HASH_EXTS) -c data/vrj-copyright.hash.txt -t config/vrj-copyright-replace.hash.pl -a
++	perl auto-copyright.pl -d ../../modules -e $(HASH_EXTS) -x $(HASH_EXCLUSIONS) -c data/vrj-copyright.hash.txt -t config/vrj-copyright-replace.hash.pl -a
 +	perl auto-copyright.pl -d ../../modules -e $(CPP_EXTS) -c data/vrj-copyright.c.txt  -t config/vrj-copyright-replace.c.pl -a
-+	perl auto-copyright.pl -d ../../modules -e $(HASH_EXTS) -c data/vrj-copyright.hash.txt -t config/vrj-copyright-replace.hash.pl -a
  
  # sonix
  snx:
 -	auto-copyright.pl -d ../../modules/sonix -e $(CPP_EXTS) -c data/vrj-copyright.c.txt  -t config/vrj-copyright-replace.c.pl -a
 -	auto-copyright.pl -d ../../modules/sonix -e $(HASH_EXTS) -c data/vrj-copyright.hash.txt -t config/vrj-copyright-replace.hash.pl -a
++	perl auto-copyright.pl -d ../../modules/sonix -e $(HASH_EXTS) -x $(HASH_EXCLUSIONS) -c data/vrj-copyright.hash.txt -t config/vrj-copyright-replace.hash.pl -a
 +	perl auto-copyright.pl -d ../../modules/sonix -e $(CPP_EXTS) -c data/vrj-copyright.c.txt  -t config/vrj-copyright-replace.c.pl -a
-+	perl auto-copyright.pl -d ../../modules/sonix -e $(HASH_EXTS) -c data/vrj-copyright.hash.txt -t config/vrj-copyright-replace.hash.pl -a
  
  snx-head:
 -	auto-copyright.pl -d ../../modules/sonix -e $(CPP_EXTS) -c data/snx-heading.c.txt  -t config/snx-heading-replace.c.pl -a
 -	auto-copyright.pl -d ../../modules/sonix -e $(HASH_EXTS) -c data/snx-heading.hash.txt -t config/snx-heading-replace.hash.pl -a
++	perl auto-copyright.pl -d ../../modules/sonix -e $(HASH_EXTS) -x $(HASH_EXCLUSIONS) -c data/snx-heading.hash.txt -t config/snx-heading-replace.hash.pl -a
 +	perl auto-copyright.pl -d ../../modules/sonix -e $(CPP_EXTS) -c data/snx-heading.c.txt  -t config/snx-heading-replace.c.pl -a
-+	perl auto-copyright.pl -d ../../modules/sonix -e $(HASH_EXTS) -c data/snx-heading.hash.txt -t config/snx-heading-replace.hash.pl -a
 diff --git a/scripts/auto-copyright/auto-copyright.pl b/scripts/auto-copyright/auto-copyright.pl
-index e61fa41..1973380 100755
+index e61fa41..04b0b2e 100755
 --- a/scripts/auto-copyright/auto-copyright.pl
 +++ b/scripts/auto-copyright/auto-copyright.pl
 @@ -4,6 +4,7 @@
  # Copyright (c) 2000 Patrick L. Hartling (original author)
  # contributors:
  #  - Kevin Meinert (command line args, external config data, working dir)
-+#  - Ryan Pavlik (fixes to use lib)
++#  - Ryan Pavlik (fixes to use lib, exclusions feature to not mangle .h.in)
  #
  # Redistribution and use in source and binary forms, with or without
  # modification, are permitted provided that the following conditions
-@@ -38,10 +39,11 @@ use Getopt::Std;
+@@ -38,18 +39,20 @@ use Getopt::Std;
  my $path;
  
  BEGIN {
@@ -48,3 +56,44 @@ index e61fa41..1973380 100755
  use RecurseDir;
  
  # get opts:
+-getopts('d:t:c:e:ha');
++getopts('d:t:c:e:x:ha');
+ 
+ my $tags_file = "$opt_t";
+ my $copyright_file = "$opt_c";
+ my @extensions = split( /,/, "$opt_e" );
++my @exclusions = split( /,/, "$opt_x" );
+ my $working_dir = "$opt_d" || ".";
+ 
+ 
+@@ -116,6 +119,7 @@ sub helpText()
+     print "Options:\n";
+     print "       -d <working dir> name of dir to start recursive processing\n";
+     print "       -e <ext1,ext2,..,extn> file extensions to process\n";
++    print "       -x <ext1,ext2,..,extn> file extensions to exclude (think h.in)\n";
+     print "       -c <(c) header> name of file with copyright text\n";
+     print "       -t <tags.pl> name of perl script which defines 4\n";
+     print "                    variables as input to this script\n";
+@@ -216,10 +220,19 @@ sub recurseFunc {
+ 
+ sub checkName ($) {
+    my $filename = shift;
+-
++   my $flag = 0;
++   
+    foreach (@extensions)
+    {
+-      return 1 if $filename =~ /\.$_$/;
++      $flag = 1 if $filename =~ /\.$_$/
++   }
++   
++   if ($flag == 1)
++   {
++      foreach (@exclusions)
++      {
++         return 0 if $filename =~ /\.$_$/
++      }
+    }
+-   return 0;
++   return $flag;
+ }
