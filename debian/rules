@@ -21,8 +21,8 @@ include debian/cdbs/1/rules/buildinfo.mk
 #AUTOTOOLS_ENV := AUTOCONF=autoconf2.59 AUTOHEADER=autoheader2.59 ACLOCAL=aclocal-1.9
 
 DEB_CONFIGURE_SCRIPT_ENV += $(AUTOTOOLS_ENV)
-DEB_CONFIGURE_SCRIPT := $(CURDIR)/$(DEB_SRCDIR)/configure.pl
-DEB_CONFIGURE_NORMAL_ARGS := --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib DESTDIR=$(DEB_DESTDIR)
+DEB_CONFIGURE_SCRIPT := $(CURDIR)/configure.pl
+#DEB_CONFIGURE_NORMAL_ARGS := --prefix=/usr --libdir=/usr/lib --libexecdir=/usr/lib DESTDIR=$(DEB_DESTDIR)
 DEB_CONFIGURE_EXTRA_FLAGS := --with-boost-includes=/usr/include \
 								--with-java-orb=JDK \
 								--with-gmtl=/usr \
