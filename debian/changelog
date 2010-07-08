@@ -1,3 +1,10 @@
+vrjuggler-2.2 (2.2.2.21324-1~rp1~jaunty1) jaunty; urgency=low
+
+  * Improve dependencies of dev packages.
+  * Don't build or install static libs
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Thu, 08 Jul 2010 13:05:29 -0500
+
 vrjuggler-2.2 (2.2.2.21324-0ubuntu1~rp1~karmic1) karmic; urgency=low
 
   * Port to karmic.
