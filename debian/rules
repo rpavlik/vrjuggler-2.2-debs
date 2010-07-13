@@ -63,10 +63,9 @@ DEB_INSTALL_DOCS_ALL := $(CURDIR)/README.txt $(CURDIR)/README.html $(CURDIR)/REA
 DEB_DH_SHLIBDEPS_ARGS := -- $(patsubst %,-x%,$(DEB_ALL_PACKAGES))
 
 # Must autogen, change perms, and make directories before build.
-makebuilddir/vrjuggler-2.2::
+pre-build::
 	$(AUTOTOOLS_ENV) ./autogen.sh
 	chmod a+x $(CURDIR)/debian/vrjuggler-env.sh
-	mkdir -p $(DEB_BUILDDIR)
 	mkdir -p $(DEB_DESTDIR)
 
 clean::
@@ -83,3 +82,4 @@ clean::
 	find $(CURDIR) -name aclocal.m4 | xargs rm -f
 	find $(CURDIR) -name configure | xargs rm -f
 	find $(CURDIR) -name *Defines.h.in | xargs rm -f
+	find $(CURDIR) -name autom4te.cache | xargs rm -rf
