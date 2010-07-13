@@ -1,0 +1,50 @@
+diff --git a/modules/gadgeteer/tools/serial/fobtest/fob_test.py b/modules/gadgeteer/tools/serial/fobtest/fob_test.py
+index 8b8a3aa..63fd4ba 100644
+--- a/modules/gadgeteer/tools/serial/fobtest/fob_test.py
++++ b/modules/gadgeteer/tools/serial/fobtest/fob_test.py
+@@ -1,4 +1,4 @@
+-#!/bin/env python
++#!/usr/bin/python
+ #
+ #
+ # Test program for flock of birds.
+diff --git a/modules/gadgeteer/tools/serial/pinchtest/Command.py b/modules/gadgeteer/tools/serial/pinchtest/Command.py
+index b81b7a6..32961bb 100644
+--- a/modules/gadgeteer/tools/serial/pinchtest/Command.py
++++ b/modules/gadgeteer/tools/serial/pinchtest/Command.py
+@@ -1,4 +1,4 @@
+-#!/bin/env/python
++#!/usr/bin/python
+ 
+ START_BYTE_NTS = 0x80
+ START_BYTE_TS = 0x81
+diff --git a/modules/vrjuggler/samples/OGL/advanced/glove/app.pl b/modules/vrjuggler/samples/OGL/advanced/glove/app.pl
+index 2c9ae0e..aad1b1e 100755
+--- a/modules/vrjuggler/samples/OGL/advanced/glove/app.pl
++++ b/modules/vrjuggler/samples/OGL/advanced/glove/app.pl
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+ # ************** <auto-copyright.pl BEGIN do not edit this line> **************
+ #
+diff --git a/modules/vrjuggler/test/Draw/OGL/analog/app.pl b/modules/vrjuggler/test/Draw/OGL/analog/app.pl
+index 3571c5f..82833bf 100755
+--- a/modules/vrjuggler/test/Draw/OGL/analog/app.pl
++++ b/modules/vrjuggler/test/Draw/OGL/analog/app.pl
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+ # Kevin's app runner Perl script....
+ 
+diff --git a/modules/vrjuggler/test/Draw/OGL/texture/app.pl b/modules/vrjuggler/test/Draw/OGL/texture/app.pl
+index df5e8fc..65dfd6b 100755
+--- a/modules/vrjuggler/test/Draw/OGL/texture/app.pl
++++ b/modules/vrjuggler/test/Draw/OGL/texture/app.pl
+@@ -1,4 +1,4 @@
+-#!/usr/local/bin/perl
++#!/usr/bin/perl
+ 
+ # ************** <auto-copyright.pl BEGIN do not edit this line> **************
+ #
