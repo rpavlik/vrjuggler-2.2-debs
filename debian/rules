@@ -82,3 +82,4 @@ clean::
 	find $(CURDIR) -name aclocal.m4 | xargs rm -f
 	find $(CURDIR) -name configure | xargs rm -f
 	find $(CURDIR) -name *Defines.h.in | xargs rm -f
+	find $(CURDIR) -name autom4te.cache | xargs rm -rf
