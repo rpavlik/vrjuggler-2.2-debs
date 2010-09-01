@@ -1,3 +1,9 @@
+vrjuggler-2.2 (2.2.2.21324-1~rp2~lucid2) lucid; urgency=low
+
+  * Bump version for rebuild against fixed vrpn package.
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Wed, 01 Sep 2010 14:21:51 -0500
+
 vrjuggler-2.2 (2.2.2.21324-1~rp2~lucid1) lucid; urgency=low
 
   * Port to Lucid
