@@ -1,0 +1,2 @@
+?package(libtweek-1.2,libvrj-2.2):command="/usr/bin/vrjconfig" icon="/usr/share/tweek-1.2/python/images/tweek-icon.png" needs="X11" \
+	section="Applications/Graphics" title="VRJConfig" hints="Virtual Reality,3D"
