@@ -2,4 +2,10 @@ usr/lib/flagpoll/vrjuggler-2.2*
 usr/lib/flagpoll/vrjuggler-opengl-2.2*
 
 usr/share/aclocal/vrj.m4
+usr/share/vrjuggler-2.2/data/bundle
+usr/share/vrjuggler-2.2/samples
+usr/share/vrjuggler-2.2/test
+usr/share/vrjuggler-2.2/tools
+
 usr/include/vrjuggler-2.2
+

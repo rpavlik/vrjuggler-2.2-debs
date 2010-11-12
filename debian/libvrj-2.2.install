@@ -1,4 +1,12 @@
-usr/share/vrjuggler-2.2
+usr/share/vrjuggler-2.2/data/calibration.table
+usr/share/vrjuggler-2.2/data/configFiles
+usr/share/vrjuggler-2.2/data/definitions
+usr/share/vrjuggler-2.2/data/gesture
+usr/share/vrjuggler-2.2/data/models
+usr/share/vrjuggler-2.2/data/sounds
+usr/share/vrjuggler-2.2/data/xslt
+usr/share/vrjuggler-2.2/vrj.appdefs.mk
+
 usr/lib/vrjuggler-2.2
 usr/lib/libvrj-2_2.so
 usr/lib/libvrj_ogl-2_2.so

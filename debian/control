@@ -56,6 +56,7 @@ Depends: ${misc:Depends}, ${shlibs:Depends},
 	libtweek-1.2,
 	libvpr-2.0,
 	libvrj-2.2
+Recommends: vrjconfig-2.2
 Description: VR Juggler 2.2 Suite metapackage - VR Virtual Platform
  VR Juggler provides virtual reality (VR) software developers with a suite of
  application programming interfaces (APIs) that abstract, and hence simplify,
@@ -76,10 +77,10 @@ Depends: ${misc:Depends}, ${shlibs:Depends},
 	libgadgeteer-1.2-dev,
 	libjccl-1.2-dev,
 	libsonix-1.2-dev,
-	libtweek-1.2-dev,
 	libvpr-2.0-dev,
 	libvrj-2.2-dev,
 	vrjuggler-2.2
+Recommends: libtweek-1.2-dev
 Description: VR Juggler 2.2 Suite development metapackage - VR Virtual Platform
  VR Juggler provides virtual reality (VR) software developers with a suite of
  application programming interfaces (APIs) that abstract, and hence simplify,
@@ -91,6 +92,26 @@ Description: VR Juggler 2.2 Suite development metapackage - VR Virtual Platform
  .
  Install this package to install all libraries and development files needed
  to compile and run applications against VR Juggler 2.2.
+
+Package: vrjconfig-2.2
+Architecture: any
+Section: x11
+Depends: ${misc:Depends},
+	libtweek-1.2,
+	libvrj-2.2
+Description: VR Juggler 2.2 Suite common files
+ VR Juggler provides virtual reality (VR) software developers with a suite of
+ application programming interfaces (APIs) that abstract, and hence simplify,
+ all interface aspects of their program including the display surfaces, object
+ tracking, selection and navigation, graphics rendering engines, and graphical
+ user interfaces. An application written with VR Juggler is essentially
+ independent of device, computer platform, and VR system. VR Juggler may be run
+ with any combination of immersive technologies and computational hardware.
+ .
+ This package provides the VRJ Config tool for viewing, editing, and updating
+ jconf configuration files for VR Juggler.
+ .
+ For a full VR Juggler 2.2 runtime installation, install vrjuggler-2.2
 
 Package: vrjuggler-common-2.2
 Architecture: all
@@ -218,6 +239,7 @@ Package: libtweek-1.2
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends},
+	bash,
 	libvpr-2.0,
 	vrjuggler-common-2.2
 Description: Tweek API for distributed applications for VR Juggler 2.2.x

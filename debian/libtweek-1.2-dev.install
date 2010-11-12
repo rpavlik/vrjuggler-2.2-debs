@@ -1,3 +1,7 @@
+usr/bin/idl
+usr/bin/logkit-1.2.jar
+usr/bin/idl.jar
+
 usr/lib/flagpoll/tweek-*
 usr/include/tweek-1.2
 usr/share/aclocal/tweek.m4
