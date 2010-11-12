@@ -1,3 +1,10 @@
+vrjuggler-2.2 (2.2.2.21324-1~rp3~lucid1) lucid; urgency=low
+
+  * Split out vrjconfig into its own package, shuffling shared files
+    as appropriate.
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Fri, 12 Nov 2010 16:06:15 -0600
+
 vrjuggler-2.2 (2.2.2.21324-1~rp2~lucid2) lucid; urgency=low
 
   * Bump version for rebuild against fixed vrpn package.
