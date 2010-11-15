@@ -1,3 +1,10 @@
+vrjuggler-2.2 (2.2.2.21324-1~rp4~lucid1) lucid; urgency=low
+
+  * Update control file to ensure smooth upgrades from pre-shuffle
+    packages.
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Mon, 15 Nov 2010 10:31:17 -0600
+
 vrjuggler-2.2 (2.2.2.21324-1~rp3~lucid1) lucid; urgency=low
 
   * Split out vrjconfig into its own package, shuffling shared files

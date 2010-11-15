@@ -99,6 +99,10 @@ Section: x11
 Depends: ${misc:Depends},
 	libtweek-1.2,
 	libvrj-2.2
+Breaks: libtweek-1.2 (<< 2.2.2.21324-1~rp3),
+	libvrj-2.2 (<< 2.2.2.21324-1~rp3)
+Replaces: libtweek-1.2 (<< 2.2.2.21324-1~rp3),
+	libvrj-2.2 (<< 2.2.2.21324-1~rp3)
 Description: VR Juggler 2.2 Suite common files
  VR Juggler provides virtual reality (VR) software developers with a suite of
  application programming interfaces (APIs) that abstract, and hence simplify,
@@ -262,6 +266,8 @@ Depends: ${misc:Depends},
 Recommends: flagpoll,
 	libcppdom-dev,
 	libomniorb4-dev
+Breaks: libtweek-1.2 (<< 2.2.2.21324-1~rp3)
+Replaces: libtweek-1.2 (<< 2.2.2.21324-1~rp3)
 Description: Development files for Tweek API
  The Tweek API provides a wrapper around CORBA for writing applications
  based on the distributed model/view/controller system. In the scope of
@@ -373,6 +379,8 @@ Recommends: flagpoll,
 	libjccl-1.2-dev,
 	libsonix-1.2-dev,
 	libvpr-2.0-dev
+Breaks: libvrj-2.2 (<< 2.2.2.21324-1~rp3)
+Replaces: libvrj-2.2 (<< 2.2.2.21324-1~rp3)
 Description: Development files for VR Juggler 2.2 core libraries
  The libraries needed for running and developing VR applications using
  VR Juggler.
