@@ -265,15 +265,42 @@ Depends: ${misc:Depends},
 	vrjuggler-common-2.2-dev
 Recommends: flagpoll,
 	libcppdom-dev,
-	libomniorb4-dev
-Breaks: libtweek-1.2 (<< 2.2.2.21324-1~rp3)
-Replaces: libtweek-1.2 (<< 2.2.2.21324-1~rp3)
+	libomniorb4-dev,
+	libtweek-idl-1.2-dev
+Breaks: libtweek-1.2 (<= 2.2.2.21324-1~rp3)
+Replaces: libtweek-1.2 (<= 2.2.2.21324-1~rp3)
 Description: Development files for Tweek API
  The Tweek API provides a wrapper around CORBA for writing applications
  based on the distributed model/view/controller system. In the scope of
  VR Juggler, such applications are usually immersive worlds that have a
  GUI that communicates with the immersive application through a network
  connection.
+ .
+ This package is a part of the VR Juggler 2.2 suite, and provides headers
+ and other files required to compile applications using this component.
+ .
+ For a full VR Juggler 2.2 runtime and development installation, install
+ vrjuggler-2.2-dev
+
+Package: libtweek-idl-1.2-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends},
+	libtweek-1.2-dev (= ${binary:Version}),
+	vrjuggler-common-2.2-dev
+Recommends: flagpoll,
+	libcppdom-dev,
+	libomniorb4-dev
+Breaks: libtweek-1.2 (<= 2.2.2.21324-1~rp3)
+Replaces: libtweek-1.2 (<= 2.2.2.21324-1~rp3)
+Description: idl tool for Tweek API
+ The Tweek API provides a wrapper around CORBA for writing applications
+ based on the distributed model/view/controller system. In the scope of
+ VR Juggler, such applications are usually immersive worlds that have a
+ GUI that communicates with the immersive application through a network
+ connection.
+ .
+ This package contains the jars and scripts to launch the jacorb idl tool.
  .
  This package is a part of the VR Juggler 2.2 suite, and provides headers
  and other files required to compile applications using this component.
