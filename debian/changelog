@@ -2,8 +2,9 @@ vrjuggler-2.2 (2.2.2.21324-1~rp3~lucid1) lucid; urgency=low
 
   * Split out vrjconfig into its own package, shuffling shared files
     as appropriate.
+  * Bump for rebuild against new cppdom
 
- -- Ryan Pavlik <abiryan@ryand.net>  Fri, 12 Nov 2010 16:06:15 -0600
+ -- Ryan Pavlik <abiryan@ryand.net>  Sun, 14 Nov 2010 19:27:51 -0600
 
 vrjuggler-2.2 (2.2.2.21324-1~rp2~lucid2) lucid; urgency=low
 
