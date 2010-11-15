@@ -2,6 +2,10 @@ vrjuggler-2.2 (2.2.2.21324-1~rp4~lucid1) lucid; urgency=low
 
   * Update control file to ensure smooth upgrades from pre-shuffle
     packages.
+  * Split out idl script into libtweek-idl-1.2-dev
+  * Rename vrjconfig and tweek scripts to include version.
+  * Use update-alternatives to set a "default" vrjconfig link
+  * Update README.source
 
  -- Ryan Pavlik <abiryan@ryand.net>  Mon, 15 Nov 2010 10:31:17 -0600
 
