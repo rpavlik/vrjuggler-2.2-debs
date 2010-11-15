@@ -1,8 +1,7 @@
-This package's original source was created by exporting a copy of the
-VR Juggler upstream SVN, in the 2.2 release branch.  As of 20091110,
-this command will produce a comparable source directory:
+This package's original source was created by loading the
+VR Juggler upstream SVN using git-svn, in the 2.2 release branch.
 
-  svn export http://vrjuggler.googlecode.com/svn/juggler/branches/2.2 vrjuggler-2.2
+  http://vrjuggler.googlecode.com/svn/juggler/branches/2.2
 
 You can view a web version of the repository here, to verify this:
 
@@ -14,4 +13,5 @@ Iowa State University users whose systems are located behind the NAT
 problem at Priority 5 (the current commercial entity behind VR Juggler)
 and has been reported to them - you might try reminding them in hopes of
 solving this bothersome problem.
+
 
