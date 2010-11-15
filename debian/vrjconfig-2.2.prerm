@@ -1,0 +1,20 @@
+#! /bin/sh
+
+set -e
+
+case "$1" in
+    remove|upgrade|deconfigure)
+        # unregister vrjconfig-2.2 as a vrjconfig in the alternatives system
+        update-alternatives --remove vrjconfig /usr/bin/vrjconfig-2.2 || true
+    ;;
+
+    failed-upgrade)
+    ;;
+
+    *)
+        echo "prerm called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
+
+#DEBHELPER#

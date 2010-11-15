@@ -1,0 +1,25 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    configure)
+        # register vrjconfig-2.2 as a vrjconfig in the alternatives system
+        update-alternatives \
+            --install \
+                /usr/bin/vrjconfig-2.2 \
+                vrjconfig \
+                /usr/bin/vrjconfig \
+                50
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
+
+#DEBHELPER#
