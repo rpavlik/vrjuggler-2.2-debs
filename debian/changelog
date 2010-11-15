@@ -1,5 +1,6 @@
-vrjuggler-2.2 (2.2.2.21324-1~rp4~lucid1) lucid; urgency=low
+vrjuggler-2.2 (2.2.2.21527-1~rp1~lucid1) lucid; urgency=low
 
+  * Update SVN snapshot from upstream.
   * Update control file to ensure smooth upgrades from pre-shuffle
     packages.
   * Split out idl script into libtweek-idl-1.2-dev
@@ -7,7 +8,7 @@ vrjuggler-2.2 (2.2.2.21324-1~rp4~lucid1) lucid; urgency=low
   * Use update-alternatives to set a "default" vrjconfig link
   * Update README.source
 
- -- Ryan Pavlik <abiryan@ryand.net>  Mon, 15 Nov 2010 10:31:17 -0600
+ -- Ryan Pavlik <abiryan@ryand.net>  Mon, 15 Nov 2010 15:16:06 -0600
 
 vrjuggler-2.2 (2.2.2.21324-1~rp3~lucid1) lucid; urgency=low
 
