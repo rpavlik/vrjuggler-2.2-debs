@@ -7,6 +7,11 @@ You can view a web version of the repository here, to verify this:
 
   http://code.google.com/p/vrjuggler/source/browse/
 
+The tarballs are stored in the upstream branch using pristine-tar, and
+are initially created with a command like the following:
+
+  git archive --format=tar --prefix=vrjuggler-2.2-2.2.2.21527/ 2.2.2.21527 | gzip > ../vrjuggler-2.2_2.2.2.21527.orig.tar.gz
+
 Note that the entire vrjuggler.org web site is inaccessible to
 Iowa State University users whose systems are located behind the NAT
 (option chosen during NetReg, can be changed using ASW).  This is a
