@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Categories=Graphics;
+Name=VRJ Config 2.2
+Exec=/usr/bin/vrjconfig
+Icon=/usr/share/tweek-1.2/python/images/tweek-icon.png
+Comment=Create, edit, and upgrade jconf files for VR Juggler 2.2
+MimeType=application/x-vrjugglerjconf
+
