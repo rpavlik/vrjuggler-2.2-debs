@@ -1,6 +1,6 @@
 usr/share/tweek-1.2
-usr/bin/tweek
-usr/bin/tweek-base.sh
+usr/bin/tweek-1.2
+usr/bin/tweek-base-1.2.sh
 
 usr/lib/libtweek-1_2.so
 usr/lib/*/libtweek-1_2.so
