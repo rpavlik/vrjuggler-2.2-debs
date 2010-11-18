@@ -7,9 +7,9 @@ case "$1" in
         # register vrjconfig-2.2 as a vrjconfig in the alternatives system
         update-alternatives \
             --install \
-                /usr/bin/vrjconfig-2.2 \
-                vrjconfig \
                 /usr/bin/vrjconfig \
+                vrjconfig \
+                /usr/bin/vrjconfig-2.2 \
                 50
     ;;
 

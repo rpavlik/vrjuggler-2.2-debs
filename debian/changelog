@@ -1,3 +1,9 @@
+vrjuggler-2.2 (2.2.2.21527-1~rp2~lucid1) lucid; urgency=low
+
+  * Fix use of update-alternatives for vrjconfig
+
+ -- Ryan Pavlik <abiryan@ryand.net>  Thu, 18 Nov 2010 10:26:00 -0600
+
 vrjuggler-2.2 (2.2.2.21527-1~rp1~lucid1) lucid; urgency=low
 
   * Update SVN snapshot from upstream.
